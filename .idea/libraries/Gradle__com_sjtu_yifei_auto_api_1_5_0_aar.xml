@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.sjtu.yifei:auto-api:1.5.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/auto-api-1.5.0.aar/36b795311bea9e61e7f4d3a065a9add6/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/auto-api-1.5.0.aar/36b795311bea9e61e7f4d3a065a9add6/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sjtu.yifei/auto-api/1.5.0/9e685103d98ba29a3f04e20d889583c5b8d80a7a/auto-api-1.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
