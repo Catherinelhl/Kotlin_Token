@@ -1,12 +1,9 @@
 package cn.catherine.token.base
 
 import android.content.Intent
-import android.nfc.Tag
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import cn.catherine.token.R
-import cn.catherine.token.tool.LogTool
-import kotlin.reflect.KClass
 
 /**
  *

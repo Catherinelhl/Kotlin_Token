@@ -20,8 +20,6 @@ object Constants {
         const val FROM_BRAND: String = "fromBrand"
 
     }
-
-
     object Time {
         const val sleep500: Int = 500
         const val sleep400: Int = 400
