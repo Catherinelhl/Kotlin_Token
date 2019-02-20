@@ -1,4 +1,4 @@
-package cn.catherine.token.tools
+package cn.catherine.token.tool
 
 import android.util.Log
 
