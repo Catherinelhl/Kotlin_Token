@@ -1,6 +1,5 @@
 package cn.catherine.token.tool.time
 
-import android.annotation.SuppressLint
 import cn.catherine.token.listener.ObservableTimerListener
 import cn.catherine.token.tool.LogTool
 import io.reactivex.Observable.timer
@@ -24,9 +23,8 @@ object ObservableTimerTool {
     /*倒计时观察者*/
     private var countDownDisposable: Disposable? = null
 
-    @SuppressLint("CheckResult")
     fun countDownTimerBySetTime(time: Long, timeUnit: TimeUnit, observableTimerListener: ObservableTimerListener?) {
-        timer(time, timeUnit)
+        val subscribe = timer(time, timeUnit)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

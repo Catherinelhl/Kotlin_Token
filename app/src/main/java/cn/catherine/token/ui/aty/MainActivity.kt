@@ -5,6 +5,8 @@ import cn.catherine.token.R
 import cn.catherine.token.base.BaseActivity
 
 class MainActivity : BaseActivity() {
+
+
     override fun getArgs(bundle: Bundle) {
     }
 
