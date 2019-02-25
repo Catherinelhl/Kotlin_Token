@@ -22,14 +22,11 @@ open class BaseApplication : MultiDexApplication() {
     companion object {
         val TAG: String = BaseApplication::class.java.simpleName
         var instance: BaseApplication? = null
+        /*屏幕的寬*/
+        var screenWidth: Int = 0
+        /*屏幕的高*/
+        var screenHeight: Int = 0
     }
-
-    /*屏幕的寬*/
-    private var screenWidth: Int = 0
-    /*屏幕的高*/
-    private var screenHeight: Int = 0
-
-
     /**
      * 得到当前的上下文
      * */
