@@ -61,7 +61,6 @@ object LogTool {
             }
             value.append(", ")
         }
-        println("values:$value")
         val valueStr = value.toString()
         // 打印
         when (mark) {

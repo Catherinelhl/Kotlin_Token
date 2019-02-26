@@ -1,9 +1,11 @@
 package cn.catherine.token.base
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import cn.catherine.token.R
+import cn.catherine.token.ui.aty.MainActivity
 
 /**
  *
@@ -16,7 +18,10 @@ import cn.catherine.token.R
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    val activity by lazy { this }
+    private val activity by lazy { this }
+    val tag by lazy { activity::class.java.simpleName }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         savedInstanceState?.let { getArgs(it) }
@@ -29,6 +34,12 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun getLayoutRes(): Int
     abstract fun initViews()
     abstract fun initListener()
+
+    /**
+     * 得到当前的屏幕方向是否是垂直
+     */
+    fun getScreenDirectionIsPortrait(): Boolean =
+        this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
     fun intentToActivity(bundle: Bundle?, classTo: Class<*>) {
         this.intentToActivity(bundle, classTo, false)

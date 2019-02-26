@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 /**
  * Created by zhy on 15/5/3.
  */
+@Deprecated
 public class GenerateValueFiles {
 
 	private int baseW;
