@@ -1,6 +1,7 @@
 package cn.catherine.token.base
 
 import android.app.Activity
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -23,6 +24,7 @@ abstract class BaseFragment : Fragment() {
     private val TAG = BaseFragment::class.java.simpleName
     private var activity: Activity? = null
     private var rootView: View? = null
+    lateinit var frgContext:Context
     protected var softKeyBroadManager: SoftKeyBroadManager? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,6 +38,7 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         OttoTool.register(this)
         activity = getActivity()
+        frgContext=context!!
         activity?.let {
             getArgs(it.intent.extras)
         }

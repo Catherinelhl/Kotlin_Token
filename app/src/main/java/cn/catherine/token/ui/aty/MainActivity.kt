@@ -46,7 +46,6 @@ class MainActivity : BaseActivity() {
 
     override fun initData() {
         for (i in fragments.indices) {
-            LogTool.d(tag, "initData:$i")
             val tab = bottom_tab_layout.newTab()
             // method 自定义布局-----
             tab.setCustomView(R.layout.item_bottom_tab)
@@ -147,11 +146,9 @@ class MainActivity : BaseActivity() {
      * @param position
      */
     private fun onTabItemSelected(position: Int) {
-        LogTool.d(tag, "onTabItemSelected$position")
         if (ListTool.noEmpty(fragments) && position < fragments.size) {
             currentFragment = fragments[position]
             currentFragment?.let {
-                LogTool.d(tag, "currentFragment$it")
                 supportFragmentManager.beginTransaction().replace(R.id.home_container, it).commit()
             }
             when (position) {
