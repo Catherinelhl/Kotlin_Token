@@ -82,7 +82,7 @@ object LanguageTool {
             val localeList = LocaleList(locale)
             LocaleList.setDefault(localeList)
             config.locales = localeList
-            BaseApplication.context().createConfigurationContext(config)
+            BaseApplication.context.createConfigurationContext(config)
             Locale.setDefault(locale)
         }
         resources.updateConfiguration(config, dm)
@@ -115,7 +115,7 @@ object LanguageTool {
     /*獲取當前語言環境*/
     fun getCurrentLanguageString(context: Context): String {
         // 1：檢查應用是否已經有用戶自己存儲的語言種類
-        var currentString: String? = PreferenceTool.getString(Constants.Preference.LANGUAGE_TYPE)
+        var currentString: String? = PreferenceTool.getInstance(context).getString(Constants.Preference.LANGUAGE_TYPE)
         LogTool.d(TAG, "getLanguageLocal:$currentString")
         if (StringTool.isEmpty(currentString)) {
             //2:當前的選中為空，那麼就默認讀取當前系統的語言環境

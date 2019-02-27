@@ -43,7 +43,7 @@ class WalletDBTool {
                 //1:对当前的钱包信息进行加密；AES加密钱包字符串，以密码作为向量
                 keyStore = AESTool.encodeCBC_128(
                     gson.toJson(walletBean),
-                    PreferenceTool.getString(Constants.Preference.PASSWORD)!!
+                    PreferenceTool.getInstance().getString(Constants.Preference.PASSWORD)!!
                 )
                 LogTool.d(TAG, "step 1:encode keystore:" + keyStore!!)
             } catch (e: Exception) {
@@ -99,7 +99,7 @@ class WalletDBTool {
         var walletBean: WalletBean? = null
         try {
             val json =
-                AESTool.decodeCBC_128(keystore, PreferenceTool.getString(Constants.Preference.PASSWORD)!!)
+                AESTool.decodeCBC_128(keystore, PreferenceTool.getInstance().getString(Constants.Preference.PASSWORD)!!)
             if (StringTool.isEmpty(json)) {
                 LogTool.d(TAG, MessageConstants.KEYSTORE_IS_NULL)
             } else {

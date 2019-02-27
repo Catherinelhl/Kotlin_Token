@@ -1,5 +1,6 @@
 package cn.catherine.token.tool
 
+import android.content.Context
 import android.content.SharedPreferences
 import cn.catherine.token.base.BaseApplication
 import cn.catherine.token.constant.Constants
@@ -20,13 +21,37 @@ import cn.catherine.token.constant.Constants
 +--------------+---------------------------------
 */
 
-object PreferenceTool {
+class PreferenceTool (context: Context){
     private val TAG = PreferenceTool::class.java.simpleName
-    private val sp: SharedPreferences by lazy {
-        BaseApplication.context().getSharedPreferences(Constants.Preference.SP_BCAAS_TUTORIAL_PAGE, 0)
-    }
-    private val editor: SharedPreferences.Editor by lazy { sp.edit() }
 
+    companion object {
+        private lateinit var sp: SharedPreferences
+        private lateinit var editor: SharedPreferences.Editor
+        //volatile https://www.cnblogs.com/dolphin0520/p/3920373.html
+        @Volatile
+        private var instance: PreferenceTool? = null
+
+        @Synchronized
+        fun getInstance(): PreferenceTool {
+            if (instance == null) {
+                instance = PreferenceTool(BaseApplication.context)
+            }
+            return instance!!
+        }
+
+        @Synchronized
+        fun getInstance(context: Context): PreferenceTool {
+            if (instance == null) {
+                instance = PreferenceTool(context)
+            }
+            return instance!!
+        }
+    }
+
+    init {
+        sp = context.getSharedPreferences(Constants.Preference.SP_BCAAS_TUTORIAL_PAGE, 0)
+        editor = sp.edit()
+    }
     fun getString(key: String): String? {
         return this.getString(key, "")
     }

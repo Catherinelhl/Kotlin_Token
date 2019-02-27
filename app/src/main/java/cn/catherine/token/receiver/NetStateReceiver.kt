@@ -30,7 +30,7 @@ class NetStateReceiver : BroadcastReceiver() {
     private var networkInfo: NetworkInfo? = null
 
     init {
-        OttoTool.register(BaseApplication.context())
+        OttoTool.register(BaseApplication.context)
     }
 
     override fun onReceive(context: Context, intent: Intent) {

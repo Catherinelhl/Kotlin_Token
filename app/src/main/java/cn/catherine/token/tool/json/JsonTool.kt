@@ -7,6 +7,7 @@ import cn.catherine.token.gson.RequestJson
 import cn.catherine.token.tool.LogTool
 import cn.catherine.token.tool.PreferenceTool
 import cn.catherine.token.tool.StringTool
+import cn.catherine.token.tool.app.GlobalVariableTool
 import cn.catherine.token.vo.PaginationVO
 import cn.catherine.token.vo.RemoteInfoVO
 import cn.catherine.token.vo.WalletVO
@@ -94,9 +95,9 @@ object JsonTool {
      * }"
      */
     fun getRequestJson(): RequestJson? {
-        val walletAddress = BaseApplication.getWalletAddress()
-        val accessToken = PreferenceTool.getString(Constants.Preference.ACCESS_TOKEN)
-        val blockService = BaseApplication.getBlockService()
+        val walletAddress = GlobalVariableTool.getWalletAddress()
+        val accessToken = PreferenceTool.getInstance().getString(Constants.Preference.ACCESS_TOKEN)
+        val blockService = GlobalVariableTool.blockService
         if (StringTool.isEmpty(walletAddress)
             || StringTool.isEmpty(accessToken)
             || StringTool.isEmpty(blockService)
@@ -125,9 +126,9 @@ object JsonTool {
      * *}"
      */
     fun getRequestJsonWithRealIp(): RequestJson? {
-        val walletAddress = BaseApplication.getWalletAddress()
-        val accessToken = PreferenceTool.getString(Constants.Preference.ACCESS_TOKEN)
-        val blockService = BaseApplication.getBlockService()
+        val walletAddress = GlobalVariableTool.getWalletAddress()
+        val accessToken = PreferenceTool.getInstance().getString(Constants.Preference.ACCESS_TOKEN)
+        val blockService = GlobalVariableTool.blockService
         if (StringTool.isEmpty(walletAddress)
             || StringTool.isEmpty(accessToken)
             || StringTool.isEmpty(blockService)
@@ -136,7 +137,7 @@ object JsonTool {
         }
         val walletVO = WalletVO(walletAddress, blockService, accessToken)
         val requestJson = RequestJson(walletVO)
-        requestJson.remoteInfoVO = RemoteInfoVO(BaseApplication.getWalletExternalIp())
+        requestJson.remoteInfoVO = RemoteInfoVO(GlobalVariableTool.walletExternalIp)
         LogTool.d(TAG, "requestJson:$requestJson")
         return requestJson
 
@@ -149,7 +150,7 @@ object JsonTool {
      */
     fun getWalletWaitingToReceiveBlockRequestJson(): RequestJson? {
         val requestJson = getRequestJson() ?: return null
-        val paginationVO = PaginationVO(BaseApplication.getNextObjectId())
+        val paginationVO = PaginationVO(GlobalVariableTool.getNextObjectId())
         requestJson.paginationVO = paginationVO
         LogTool.i(TAG, GsonTool.string(requestJson))
         return requestJson

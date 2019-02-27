@@ -37,15 +37,27 @@ import com.google.common.eventbus.Subscribe
 +--------------+---------------------------------
 */
 
-object BaseApplication : MultiDexApplication() {
-    val TAG: String = BaseApplication::class.java.simpleName
-    var instance: BaseApplication? = null
-    /*屏幕的寬*/
-    var screenWidth: Int = 0
-    /*屏幕的高*/
-    var screenHeight: Int = 0
-    /*当前的语言环境,默认是英文*/
-    var isZH: Boolean = false
+class BaseApplication : MultiDexApplication() {
+    val tag: String = BaseApplication::class.java.simpleName
+
+    companion object {
+        private lateinit var instance: BaseApplication
+        /*屏幕的寬*/
+        var screenWidth: Int = 0
+        /*屏幕的高*/
+        var screenHeight: Int = 0
+
+        /*当前上下文*/
+        val context: Context by lazy { instance.applicationContext }
+
+        /*当前的语言环境,默认是英文*/
+        var isZH: Boolean = false
+
+        /*数据管理库*/
+        lateinit var baseDBHelper: BaseDBHelper
+
+    }
+
     /*当前登錄的钱包信息*/
     private lateinit var walletBean: WalletBean
     /*當前AN信息*/
@@ -54,12 +66,9 @@ object BaseApplication : MultiDexApplication() {
     private lateinit var transactionAmount: String
     /*当前需要交易的地址信息*/
     private lateinit var destinationWallet: String
-    /*数据管理库*/
-    lateinit var baseDBHelper: BaseDBHelper
+
     /*当前账户的余额*/
     private var walletBalance: String? = null
-    /*当前账户的币种*/
-    private lateinit var blockService: String
     /*监听当前程序是否保持继续网络请求*/
     private var keepHttpRequest: Boolean = false
     /*判断当前程序是否真的有网*/
@@ -68,22 +77,13 @@ object BaseApplication : MultiDexApplication() {
     private var tcpIp: String? = null
     private var tcpPort: Int = 0
     private var httpPort: Int = 0
-    /*当前设备的外网IP，由服务器返回*/
-    private var walletExternalIp: String? = null
-    /*當前請求R區塊的分頁信息*/
-    private var nextObjectId: String? = null
+
     //存儲當前是否登錄，如果登錄，首頁「登錄」按鈕變為「登出」
     private var isLogin: Boolean = false
     /*是否是手机版*/
     private var isPhone: Boolean = false
-    /*定义一个需要显示SANIP的变量*/
+    /*定义一个需要显示SAN_IP的变量*/
     private var showSANIP: Boolean = false
-
-    /**
-     * 得到当前的上下文
-     * */
-
-    fun context(): Context = instance!!.applicationContext
 
     override fun onCreate() {
         super.onCreate()
@@ -111,8 +111,8 @@ object BaseApplication : MultiDexApplication() {
      * 创建存储当前钱包「Keystore」的数据库
      */
     private fun createDB() {
-        LogTool.d(TAG, MessageConstants.CREATE_DB)
-        baseDBHelper = BaseDBHelper(context())
+        LogTool.d(tag, MessageConstants.CREATE_DB)
+        baseDBHelper = BaseDBHelper(context)
 
     }
 
@@ -155,7 +155,7 @@ object BaseApplication : MultiDexApplication() {
                     + "\n " + MessageConstants.SCREEN_HEIGHT + screenHeight
                     + "\n屏幕密度:  " + density
                     + "\n屏幕密度DPI: " + densityDpi)
-            LogTool.d(TAG, MessageConstants.DEVICE_INFO + info)
+            LogTool.d(tag, MessageConstants.DEVICE_INFO + info)
         }
     }
 
@@ -164,7 +164,7 @@ object BaseApplication : MultiDexApplication() {
      */
     private fun getDisplayMetrics(): DisplayMetrics? {
         val displayMetrics = DisplayMetrics()
-        val windowManager = context().getSystemService(Context.WINDOW_SERVICE) as WindowManager?
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager?
         windowManager ?: return null
         windowManager.defaultDisplay.getMetrics(displayMetrics)
         return displayMetrics
@@ -190,20 +190,6 @@ object BaseApplication : MultiDexApplication() {
     /*得到所有的币种*/
     private var publicUnitVOList: List<PublicUnitVO>? = null
 
-    fun getNextObjectId(): String? {
-        return if (StringTool.isEmpty(nextObjectId) || StringTool.equals(
-                nextObjectId,
-                MessageConstants.NEXT_PAGE_IS_EMPTY
-            )
-        ) {
-            //默認第一次穿空字符串
-            MessageConstants.Empty
-        } else nextObjectId
-    }
-
-    fun setNextObjectId(nextObjectId: String) {
-        this.nextObjectId = nextObjectId
-    }
 
     fun getPublicUnitVOList(): List<PublicUnitVO>? {
         return publicUnitVOList
@@ -216,7 +202,7 @@ object BaseApplication : MultiDexApplication() {
 
     /*得到新的AN信息*/
     fun setClientIpInfoVO(clientIpInfo: ClientIpInfoVO) {
-        LogTool.d(TAG, MessageConstants.UPDATE_CLIENT_IP_INFO + clientIpInfo)
+        LogTool.d(tag, MessageConstants.UPDATE_CLIENT_IP_INFO + clientIpInfo)
         this.clientIpInfoVO = clientIpInfo
     }
 
@@ -265,21 +251,13 @@ object BaseApplication : MultiDexApplication() {
         this.walletBalance = MessageConstants.Empty
     }
 
-    fun getWalletExternalIp(): String? {
-        return walletExternalIp
-    }
-
-    fun setWalletExternalIp(walletExternalIp: String) {
-        this.walletExternalIp = walletExternalIp
-    }
-
     /**
      * 返回当前的token是否为空
      *
      * @return
      */
     fun tokenIsNull(): Boolean {
-        val accessToken = PreferenceTool.getString(Constants.Preference.ACCESS_TOKEN)
+        val accessToken = PreferenceTool.getInstance().getString(Constants.Preference.ACCESS_TOKEN)
         return StringTool.isEmpty(accessToken)
     }
 
@@ -291,15 +269,6 @@ object BaseApplication : MultiDexApplication() {
         this.showSANIP = showSANIP
     }
 
-    fun getWalletAddress(): String? {
-        return if (walletBean == null) {
-            null
-        } else {
-            walletBean.getAddress()
-
-        }
-    }
-
     fun getWalletBean(): WalletBean {
         return if (walletBean == null) {
             WalletBean()
@@ -307,7 +276,7 @@ object BaseApplication : MultiDexApplication() {
     }
 
     fun setWalletBean(walletBean: WalletBean) {
-        LogTool.d(TAG, walletBean)
+        LogTool.d(tag, walletBean)
         this.walletBean = walletBean
     }
 
@@ -327,14 +296,6 @@ object BaseApplication : MultiDexApplication() {
 
     fun setDestinationWallet(destinationWallet: String) {
         this.destinationWallet = destinationWallet
-    }
-
-    fun getBlockService(): String {
-        return blockService
-    }
-
-    fun setBlockService(blockService: String) {
-        this.blockService = blockService
     }
 
     fun isKeepHttpRequest(): Boolean {

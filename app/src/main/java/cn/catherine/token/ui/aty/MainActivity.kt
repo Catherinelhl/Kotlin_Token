@@ -1,12 +1,10 @@
 package cn.catherine.token.ui.aty
 
 import android.os.Bundle
-import android.support.percent.PercentLayoutHelper
 import android.view.ViewGroup
 import cn.catherine.token.R
 import cn.catherine.token.base.BaseActivity
 import cn.catherine.token.base.BaseApplication
-import cn.catherine.token.tool.LogTool
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -25,8 +23,6 @@ class MainActivity : BaseActivity() {
             else (if (BaseApplication.screenWidth < BaseApplication.screenHeight) BaseApplication.screenHeight else BaseApplication.screenWidth))
                 .let { it * 47 / 50 }
         val height = width * 204 / 355
-        LogTool.d(tag, "initViews:width=$width")
-        LogTool.d(tag, "initViews:height=$height")
         layoutParam.width = width
         layoutParam.height = height
         top_left.layoutParams = layoutParam
