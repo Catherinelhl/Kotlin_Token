@@ -26,7 +26,7 @@
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/button_right_color"
             app:tabTextColor="@color/black30_1d2124"
-            android:layout_height="@dimen/y48">
+            android:layout_height="@dimen/y92">
 
     </android.support.design.widget.TabLayout>
 

@@ -2,16 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/rl_header"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y48"
+                android:layout_height="@dimen/y92"
                 android:background="@color/white">
 
     <ImageButton
             android:id="@+id/ib_back"
-            android:layout_width="@dimen/y48"
-            android:layout_height="@dimen/y48"
+            android:layout_width="@dimen/y92"
+            android:layout_height="@dimen/y92"
             android:background="@color/transparent"
-            android:paddingLeft="@dimen/x10"
-            android:paddingRight="@dimen/x10"
+            android:paddingLeft="@dimen/x20"
+            android:paddingRight="@dimen/x20"
             android:src="@mipmap/icon_back"
             android:visibility="gone"/>
 
@@ -19,17 +19,18 @@
             android:id="@+id/tv_title"
             style="@style/black_bold_18_text_style"
             android:layout_centerInParent="true"
+            android:textSize="@dimen/x35"
             android:gravity="center"
-            android:padding="@dimen/x5"/>
+            android:padding="@dimen/x10"/>
 
     <ImageButton
             android:id="@+id/ib_right"
-            android:layout_width="@dimen/y48"
-            android:layout_height="@dimen/y48"
+            android:layout_width="@dimen/y92"
+            android:layout_height="@dimen/y92"
             android:layout_alignParentRight="true"
             android:background="@color/transparent"
-            android:paddingLeft="@dimen/x10"
-            android:paddingRight="@dimen/x10"
+            android:paddingLeft="@dimen/x20"
+            android:paddingRight="@dimen/x20"
             android:src="@mipmap/icon_add"
             android:visibility="gone"/>
 
