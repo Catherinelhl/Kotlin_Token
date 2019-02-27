@@ -7,6 +7,7 @@ import cn.catherine.token.R
 import cn.catherine.token.base.BaseActivity
 import cn.catherine.token.base.BaseFragment
 import cn.catherine.token.tool.ListTool
+import cn.catherine.token.tool.LogTool
 import cn.catherine.token.ui.frg.MainFragment
 import cn.catherine.token.ui.frg.ReceiveFragment
 import cn.catherine.token.ui.frg.SendFragment
@@ -45,10 +46,10 @@ class MainActivity : BaseActivity() {
 
     override fun initData() {
         for (i in fragments.indices) {
+            LogTool.d(tag, "initData:$i")
             val tab = bottom_tab_layout.newTab()
             // method 自定义布局-----
             tab.setCustomView(R.layout.item_bottom_tab)
-            //            textView.getPaint().setShader(getShader(textView, false));
             val textView = tab.customView!!.findViewById<TextView>(R.id.tv_tab_title)
             textView.setTextColor(context.resources.getColor(R.color.black30_1d2124))
             textView.setCompoundDrawablesWithIntrinsicBounds(
@@ -59,7 +60,6 @@ class MainActivity : BaseActivity() {
             )
             textView.text = dataGenerationManager.getTabBottomTitle(i)
             //自定义布局-----
-
             bottom_tab_layout.addTab(tab)
             if (i == 0) {
                 //默认选中第一个
@@ -147,9 +147,11 @@ class MainActivity : BaseActivity() {
      * @param position
      */
     private fun onTabItemSelected(position: Int) {
+        LogTool.d(tag, "onTabItemSelected$position")
         if (ListTool.noEmpty(fragments) && position < fragments.size) {
             currentFragment = fragments[position]
             currentFragment?.let {
+                LogTool.d(tag, "currentFragment$it")
                 supportFragmentManager.beginTransaction().replace(R.id.home_container, it).commit()
             }
             when (position) {

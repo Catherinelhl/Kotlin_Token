@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Gravity
+import android.widget.Toast
 import cn.catherine.token.R
 import cn.catherine.token.manager.DataGenerationManager
 import cn.catherine.token.ui.aty.MainActivity
@@ -50,7 +52,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun intentToActivity(bundle: Bundle?, classTo: Class<*>, finishFrom: Boolean) {
-        this.intentToActivity(bundle, classTo, false, isClearTask = false)
+        this.intentToActivity(bundle, classTo, finishFrom,   false)
 
     }
 
@@ -68,4 +70,15 @@ abstract class BaseActivity : AppCompatActivity() {
         }
         overridePendingTransition(R.anim.slide_in_alpha, R.anim.slide_exit_alpha)
     }
+
+    fun showToast(toastInfo: String) {
+        runOnUiThread {
+            val toast = Toast.makeText(activity, "", Toast.LENGTH_LONG)
+            /*解决小米手机toast自带包名的问题*/
+            toast.setText(toastInfo)
+            toast.setGravity(Gravity.CENTER, 0, 0)
+            toast.show()
+        }
+    }
+
 }

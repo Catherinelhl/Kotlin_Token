@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.catherine.token.manager.SoftKeyBroadManager
+import cn.catherine.token.tool.OttoTool
 
 /**
  *
@@ -19,15 +21,26 @@ import android.view.ViewGroup
  */
 abstract class BaseFragment : Fragment() {
     private val TAG = BaseFragment::class.java.simpleName
-    private val activity: Activity? by lazy { getActivity() }
+    private var activity: Activity? = null
+    private var rootView: View? = null
+    protected var softKeyBroadManager: SoftKeyBroadManager? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        if (rootView == null) {
+            rootView = inflater.inflate(getLayoutRes(), container, false)
+        }
+        return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.let { }
+        OttoTool.register(this)
+        activity = getActivity()
+        activity?.let {
+            getArgs(it.intent.extras)
+        }
+        initViews(view)
+        initListener()
     }
 
 
@@ -45,6 +58,19 @@ abstract class BaseFragment : Fragment() {
     abstract fun initViews(view: View)
     abstract fun getArgs(bundle: Bundle)
     abstract fun initListener()
+
+    fun showToast(info: String) {
+        if (!checkActivityState()) {
+            return
+        }
+        (activity as BaseActivity).showToast(info)
+    }
+
+    private fun checkActivityState(): Boolean {
+        return (activity != null
+                && !activity!!.isFinishing
+                && isAdded)
+    }
 
     override fun onDestroy() {
         super.onDestroy()

@@ -13,6 +13,7 @@
             android:largeHeap="true"
             android:roundIcon="@mipmap/ic_launcher"
             android:supportsRtl="true"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
         <activity android:name="cn.catherine.token.ui.aty.BrandActivity">
             <intent-filter>
@@ -30,10 +31,11 @@
                 android:grantUriPermissions="true">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/file_paths" />
+                    android:resource="@xml/file_paths"/>
         </provider>
         <activity android:name="cn.catherine.token.ui.aty.MainActivity"
-                 >
+                  android:launchMode="singleTask"
+        >
         </activity>
     </application>
 
