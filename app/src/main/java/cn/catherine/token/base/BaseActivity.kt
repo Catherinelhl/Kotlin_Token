@@ -1,10 +1,12 @@
 package cn.catherine.token.base
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import cn.catherine.token.R
+import cn.catherine.token.manager.DataGenerationManager
 import cn.catherine.token.ui.aty.MainActivity
 
 /**
@@ -20,19 +22,21 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private val activity by lazy { this }
     val tag by lazy { activity::class.java.simpleName }
-
-
+    val context: Context by lazy { applicationContext }
+    val dataGenerationManager: DataGenerationManager by lazy { DataGenerationManager() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         savedInstanceState?.let { getArgs(it) }
         setContentView(getLayoutRes())
         initViews()
+        initData()
         initListener()
     }
 
     abstract fun getArgs(bundle: Bundle)
     abstract fun getLayoutRes(): Int
     abstract fun initViews()
+    abstract fun initData()
     abstract fun initListener()
 
     /**

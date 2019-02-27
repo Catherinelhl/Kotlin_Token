@@ -26,11 +26,12 @@ class LoginActivity : BaseActivity() {
     override fun getArgs(bundle: Bundle) {
     }
 
-    override fun getLayoutRes(): Int = R.layout.activity_login
+    override fun getLayoutRes(): Int = R.layout.aty_login
 
     override fun initViews() {
     }
-
+    override fun initData() {
+    }
     override fun initListener() {
     }
 }

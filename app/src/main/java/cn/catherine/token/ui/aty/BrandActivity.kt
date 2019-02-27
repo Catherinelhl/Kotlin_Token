@@ -5,7 +5,6 @@ import cn.catherine.token.R
 import cn.catherine.token.base.BaseActivity
 import cn.catherine.token.constant.Constants
 import cn.catherine.token.listener.ObservableTimerListener
-import cn.catherine.token.tool.LogTool
 import cn.catherine.token.tool.time.ObservableTimerTool
 import java.util.concurrent.TimeUnit
 
@@ -24,7 +23,7 @@ class BrandActivity : BaseActivity() {
 
     }
 
-    override fun getLayoutRes(): Int = R.layout.activity_brand
+    override fun getLayoutRes(): Int = R.layout.aty_brand
 
     override fun initViews() {
         //显示2s，然后跳转到登录页面
@@ -38,6 +37,9 @@ class BrandActivity : BaseActivity() {
                 }
             })
 
+    }
+
+    override fun initData() {
     }
 
     override fun initListener() {

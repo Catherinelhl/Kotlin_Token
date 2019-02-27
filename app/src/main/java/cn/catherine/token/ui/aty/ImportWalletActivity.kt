@@ -26,11 +26,12 @@ class ImportWalletActivity : BaseActivity() {
     override fun getArgs(bundle: Bundle) {
     }
 
-    override fun getLayoutRes(): Int = R.layout.activity_import
+    override fun getLayoutRes(): Int = R.layout.aty_import
 
     override fun initViews() {
     }
-
+    override fun initData() {
+    }
     override fun initListener() {
     }
 }

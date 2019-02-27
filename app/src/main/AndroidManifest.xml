@@ -22,7 +22,16 @@
             </intent-filter>
         </activity>
 
-
+        <!-- 解决Android 7.0文件共享的问题-->
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="cn.catherine.token.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths" />
+        </provider>
         <activity android:name="cn.catherine.token.ui.aty.MainActivity"
                  >
         </activity>

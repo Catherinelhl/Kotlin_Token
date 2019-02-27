@@ -1,6 +1,7 @@
 package cn.catherine.token.base
 
 import android.app.Activity
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -29,6 +30,13 @@ abstract class BaseFragment : Fragment() {
         activity?.let { }
     }
 
+
+    /**
+     * 得到当前的屏幕方向是否是垂直
+     */
+    fun getScreenDirectionIsPortrait(): Boolean =
+        this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
@@ -41,6 +49,7 @@ abstract class BaseFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
     }

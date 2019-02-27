@@ -54,12 +54,15 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    //测试
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //约束布局
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    //应用 TabLayout
+    implementation 'com.android.support:design:28.0.0-rc01'
+    //对数据进行Gson
     implementation 'com.google.code.gson:gson:2.8.5'
     //bitCoinJ 需要依赖的库
     implementation 'org.bitcoinj:bitcoinj-core:0.14.7'
@@ -82,6 +85,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
      //百分比布局，通过此进行适配布局
     implementation 'com.android.support:percent:28.0.0'
+    //事件订阅
     implementation 'com.squareup:otto:1.3.8'
 
 }
