@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BYToken</string>
-
 
     <!--translate-->
     <string name="unlock">Unlock wallet</string>
@@ -11,17 +11,26 @@
     <string name="import_wallet">Import wallet</string>
     <string name="import_wallet_tv">Import</string>
     <string name="warning">Warning</string>
-    <string name="create_wallet_dialog_message">Creating wallet will remove all information from your existing wallet! If you have funds in your current wallet, make sure you have a backup to restore from.</string>
-    <string name="import_wallet_dialog_message">Importing wallet will remove all information from your existing wallet! If you have funds in your current wallet, make sure you have a backup to restore from.</string>
+    <string name="create_wallet_dialog_message">Creating wallet will remove all information from your existing wallet!
+        If you have funds in your current wallet, make sure you have a backup to restore from.
+    </string>
+    <string name="import_wallet_dialog_message">Importing wallet will remove all information from your existing wallet!
+        If you have funds in your current wallet, make sure you have a backup to restore from.
+    </string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="please_enter_password_again">Enter your password again</string>
-    <string name="password_input_rule_remind">This password is used to encrypt wallet information and unlock the wallet, please store it securely!</string>
+    <string name="password_input_rule_remind">This password is used to encrypt wallet information and unlock the wallet,
+        please store it securely!
+    </string>
     <string name="account_address">Account address</string>
     <string name="receiving_account">Receiving account</string>
     <string name="account_address_en">Address</string>
     <string name="backup_private_key">Backup your private key</string>
-    <string name="backup_private_key_detail">This private key is used to restore the wallet when you forget password,lost private key means lost funds.We suggest you store the private key securely or even write it down on paper.</string>
+    <string name="backup_private_key_detail">This private key is used to restore the wallet when you forget
+        password,lost private key means lost funds.We suggest you store the private key securely or even write it down
+        on paper.
+    </string>
     <string name="finish">Complete</string>
     <string name="enter_private_key">Enter your private key</string>
     <string name="set_password_for_your_wallet">Please set password for your wallet</string>
@@ -41,10 +50,14 @@
     <string name="view_wallet_info">Wallet info</string>
     <string name="address_manager">Address management</string>
     <string name="modify_password">Change password</string>
-    <string name="save_private_key_hint">We suggest you write down the private key on a paper and store it securely in case of loss.</string>
+    <string name="save_private_key_hint">We suggest you write down the private key on a paper and store it securely in
+        case of loss.
+    </string>
     <string name="send_email">Send by email</string>
     <string name="send_wallet_file_by_email">Send wallet file by email</string>
-    <string name="email_json_rule">When the APP is deleted,this file is used to restore the wallet. We suggest you backup this file by email.</string>
+    <string name="email_json_rule">When the APP is deleted,this file is used to restore the wallet. We suggest you
+        backup this file by email.
+    </string>
     <string name="insert_address">Add account address</string>
     <string name="change_representatives">Change representative</string>
     <string name="address_alias">Account alias</string>
@@ -58,19 +71,26 @@
     <string name="logout">Log out</string>
     <string name="logout_failure">logout failed</string>
     <string name="enter_password">Please enter password</string>
-    <string name="save_wallet_file_warning">Please save your wallet file and private key,lost private key means lost funds.</string>
+    <string name="save_wallet_file_warning">Please save your wallet file and private key,lost private key means lost
+        funds.
+    </string>
     <string name="check_my_transaction_records">Check my transaction records</string>
     <string name="no_transaction_records">No transaction record</string>
     <string name="transaction_records">Transaction records</string>
     <string name="transaction_has_successfully">The transaction was sent successfully</string>
     <string name="transaction_has_failure">The transaction was sent failed，please try again later</string>
-    <string name="transaction_has_successfully_and_the_number_is">The transaction has been sent successfully and the number is as follows</string>
+    <string name="transaction_has_successfully_and_the_number_is">The transaction has been sent successfully and the
+        number is as follows
+    </string>
     <string name="chick_to_copy">Click to copy</string>
-    <string name="authorized_representative_can_not_be_modified">The authorized representative cannot be modified before the initial block is generated. The initial block is automatically generated after the first token is received</string>
+    <string name="authorized_representative_can_not_be_modified">The authorized representative cannot be modified before
+        the initial block is generated. The initial block is automatically generated after the first token is received
+    </string>
 
     <!--translate third-->
 
-    <string name="enter_address_of_the_authorized">Please enter the address of the authorized representative account</string>
+    <string name="enter_address_of_the_authorized">Please enter the address of the authorized representative account
+    </string>
     <string name="address_format_error">Address format error</string>
     <string name="change_successfully">Changed successfully</string>
     <string name="change_failed">Change failed</string>
@@ -94,7 +114,7 @@
     <string name="double_click_for_exit">Press the return button again to exit the program</string>
     <string name="no_account_address_to_choose_from">Currently, there is no account address to choose from</string>
 
-    <string name="transaction_to" formatted="false">To %s  </string>
+    <string name="transaction_to" formatted="false">To %s</string>
     <string name="authorized_representative_address">Authorized representative account address</string>
     <string name="wallet_info">Wallet information</string>
     <string name="private_key">Private key</string>
@@ -113,7 +133,8 @@
     <string name="successfully_copied">Successfully copied</string>
     <string name="confirm_delete">Confirm delete？</string>
     <string name="no_account_address_add">No account address for collection, please add</string>
-    <string name="password_rule"><![CDATA[0123456789abcdefghigklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM!@#¥%^&*-_]]></string>
+    <string name="password_rule">
+        <![CDATA[0123456789abcdefghigklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM!@#¥%^&*-_]]></string>
 
     <!--translate forth-->
     <string name="to_setting_grant_permission">Click "Confirm" to jump to system settings to open permissions</string>
@@ -146,17 +167,19 @@
     <string name="email_body">mail body</string>
     <string name="send_success">Sent successfully</string>
     <string name="send_fail">Failed to send</string>
-    <string name="sending_wallet_same_as_receiving_wallet"> The sending account address cannot be the same as the receiving account address</string>
+    <string name="sending_wallet_same_as_receiving_wallet">The sending account address cannot be the same as the
+        receiving account address
+    </string>
     <string name="create_wallet">Create wallet</string>
     <string name="incomplete_transaction">Incomplete transactions</string>
-    <string name="version_name">Version  </string>
+    <string name="version_name">Version</string>
     <string name="change_server">Change server</string>
     <string name="show_more">Click to see more</string>
 
 
     <!--TV START-->
     <string name="login">Login</string>
-    <string name="str_star">* </string>
+    <string name="str_star">*</string>
     <!--TV END-->
 
     <string name="see">See</string>
@@ -191,7 +214,9 @@
 
 
     <string name="server_busy">Server is currently busy, please try again later</string>
-    <string name="no_notification_permission">It is detected that you have not opened the notification permission, whether to open</string>
+    <string name="no_notification_permission">It is detected that you have not opened the notification permission,
+        whether to open
+    </string>
 
     <!--资料同步中-->
     <string name="data_synchronizing">Data synchronization</string>
@@ -210,6 +235,4 @@
     <string name="select">Select</string>
     <string name="transaction_detail">Transaction detail</string>
     <string name="select_token_please">Please select token on the homepage first</string>
-
-
 </resources>
