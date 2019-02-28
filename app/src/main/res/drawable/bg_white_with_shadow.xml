@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--android:width="108dp"-->
+    <!--android:height="38dp"-->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white10_F1F1F1" />
+            <corners android:radius="@dimen/x38" />
+            <padding
+                android:bottom="@dimen/x14"
+                android:left="@dimen/x0"
+                android:right="@dimen/x0"
+                android:top="@dimen/x0" />
+            <item android:name="android:shadowColor">#99fbf1e6</item>
+            <item android:name="android:shadowDx">10</item>
+            <item android:name="android:shadowDy">10</item>
+        </shape>
+    </item>
+    <shape android:shape="rectangle">
+        <solid android:color="@color/white10_F1F1F1" />
+        <corners android:radius="@dimen/x38" />
+        <padding
+            android:bottom="@dimen/x10"
+            android:left="@dimen/x0"
+            android:right="@dimen/x0"
+            android:top="@dimen/x0" />
+        <item android:name="android:shadowColor">#99fbf1e6</item>
+        <item android:name="android:shadowDx">10</item>
+        <item android:name="android:shadowDy">10</item>
+    </shape>
+    <shape android:shape="rectangle">
+        <solid android:color="@color/white10_F1F1F1" />
+        <corners android:radius="@dimen/x38" />
+        <padding
+            android:bottom="@dimen/x6"
+            android:left="@dimen/x0"
+            android:right="@dimen/x0"
+            android:top="@dimen/x0" />
+        <item android:name="android:shadowColor">#99fbf1e6</item>
+        <item android:name="android:shadowDx">10</item>
+        <item android:name="android:shadowDy">10</item>
+    </shape>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/x38" />
+            <solid android:color="#fffbf1e6" />
+        </shape>
+    </item>
+</layer-list>
