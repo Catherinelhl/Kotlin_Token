@@ -21,7 +21,7 @@ import cn.catherine.token.manager.DataGenerationManager
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-     val activity by lazy { this }
+    val activity by lazy { this }
     val tag by lazy { activity::class.java.simpleName }
     val context: Context by lazy { applicationContext }
     val dataGenerationManager: DataGenerationManager by lazy { DataGenerationManager() }
@@ -51,7 +51,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun intentToActivity(bundle: Bundle?, classTo: Class<*>, finishFrom: Boolean) {
-        this.intentToActivity(bundle, classTo, finishFrom,   false)
+        this.intentToActivity(bundle, classTo, finishFrom, false)
     }
 
 

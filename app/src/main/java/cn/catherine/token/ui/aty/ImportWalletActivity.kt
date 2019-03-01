@@ -1,5 +1,6 @@
 package cn.catherine.token.ui.aty
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -12,6 +13,7 @@ import cn.catherine.token.R
 import cn.catherine.token.base.BaseActivity
 import cn.catherine.token.constant.Constants
 import cn.catherine.token.manager.AppManager
+import cn.catherine.token.tool.LogTool
 import cn.catherine.token.tool.SoftKeyBoardTool
 import cn.catherine.token.tool.StringTool
 import cn.catherine.token.tool.ecc.WalletTool
@@ -41,9 +43,10 @@ import java.util.concurrent.TimeUnit
 
 class ImportWalletActivity : BaseActivity() {
     // 跳轉拍照
-    private val capture = 0x11
+    private val codeOfCapture = 0x11
     //跳轉設置密碼
-    private val set_password = 0x12
+    private val codeOfSetPassword = 0x12
+
     override fun getArgs(bundle: Bundle) {
     }
 
@@ -58,7 +61,6 @@ class ImportWalletActivity : BaseActivity() {
     }
 
     override fun initListener() {
-
         rl_import_wallet.setOnTouchListener { v, event ->
             activity?.let {
                 SoftKeyBoardTool(it).hideSoftKeyboard()
@@ -79,7 +81,7 @@ class ImportWalletActivity : BaseActivity() {
                 } else {
                     if (WalletTool().parseWIFPrivateKey(privateKey)) {
                         startActivityForResult(
-                            Intent(this, SetPasswordForImportWalletActivity::class.java), set_password
+                            Intent(this, SetPasswordForImportWalletActivity::class.java), codeOfSetPassword
                         )
                     } else {
                         showToast(getString(R.string.private_key_error))
@@ -114,8 +116,45 @@ class ImportWalletActivity : BaseActivity() {
         }
     }
 
+    /**
+     *跳转调用拍照的Activity
+     */
     private fun intentToCaptureActivity() {
-        startActivityForResult(Intent(this, CaptureActivity::class.java), capture)
+        startActivityForResult(Intent(this, CaptureActivity::class.java), codeOfCapture)
 
+    }
+
+    protected override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (data == null) {
+                return
+            }
+            if (requestCode == codeOfCapture) {
+                // 跳轉「拍照」返回
+                val bundle = data.extras
+                if (bundle != null) {
+                    val result = bundle.getString(Constants.RESULT)
+                    et_private_key.setText(result)
+                    result?.let {
+                        et_private_key.setSelection(result!!.length)
+                    }
+                }
+            } else if (requestCode == codeOfSetPassword) {
+                //跳轉「為導入的錢包設置密碼」返回
+                val bundle = data.extras
+                if (bundle != null) {
+                    val isBack = bundle.getBoolean(Constants.KeyMaps.From)
+                    LogTool.d(tag, isBack)
+                    if (!isBack) {
+                        activity?.let {
+                            //點擊「導入」按鈕，那麼應該關閉當前頁面，然後進行登錄
+                            AppManager(activity).setResult(false)
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }
