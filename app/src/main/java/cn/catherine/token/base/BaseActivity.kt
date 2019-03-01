@@ -21,7 +21,7 @@ import cn.catherine.token.manager.DataGenerationManager
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    private val activity by lazy { this }
+     val activity by lazy { this }
     val tag by lazy { activity::class.java.simpleName }
     val context: Context by lazy { applicationContext }
     val dataGenerationManager: DataGenerationManager by lazy { DataGenerationManager() }

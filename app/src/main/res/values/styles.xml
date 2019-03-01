@@ -125,5 +125,47 @@
         <item name="android:textSize">@dimen/x32</item>
     </style>
 
+    <style name="black30_10_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/black30_1d2124</item>
+        <item name="android:textSize">@dimen/x20</item>
+    </style>
 
+    <style name="black_14_edit_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:cursorVisible">true</item>
+        <item name="android:inputType">textMultiLine|textImeMultiLine</item>
+        <item name="android:textCursorDrawable">@drawable/edit_text_cursor_drawable</item>
+        <item name="android:layout_marginTop">@dimen/y32</item>
+        <item name="android:textSize">@dimen/x28</item>
+        <item name="android:background">@drawable/bg_edit_text</item>
+        <item name="android:textColorHint">@color/black30_1d2124</item>
+        <item name="android:textColor">@color/black_1d2124</item>
+    </style>
+    <style name="black70_14_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/black70_1d2124</item>
+        <item name="android:textSize">@dimen/x28</item>
+    </style>
+
+    <style name="black30_14_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/black30_1d2124</item>
+        <item name="android:textSize">@dimen/x28</item>
+    </style>
+
+
+    <style name="red_14_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">@dimen/x28</item>
+    </style>
 </resources>

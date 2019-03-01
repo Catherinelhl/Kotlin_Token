@@ -33,7 +33,7 @@ class BrandActivity : BaseActivity() {
                     //跳转到登录页面
                     val bundle = Bundle()
                     bundle.putString(Constants.KeyMaps.From, Constants.ValueMaps.FROM_BRAND)
-                    intentToActivity(bundle, MainActivity::class.java, true)
+                    intentToActivity(bundle, LoginActivity::class.java, true)
                 }
             })
 

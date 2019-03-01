@@ -55,6 +55,9 @@
         <activity android:name="cn.catherine.token.ui.aty.ModifyAuthorizedRepresentativesActivity"
                   android:launchMode="singleTask"
         />
+        <activity android:name="cn.catherine.token.ui.aty.CreateWalletActivity"
+                  android:launchMode="singleTask"
+        />
     </application>
 
 </manifest>

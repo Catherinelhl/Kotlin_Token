@@ -1,9 +1,11 @@
 package cn.catherine.token.manager
 
 import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import cn.catherine.token.R
+import cn.catherine.token.constant.Constants
 import cn.catherine.token.tool.LogTool
 import cn.catherine.token.ui.aty.LoginActivity
 
@@ -103,4 +105,17 @@ class AppManager {
         }
 
     }
+
+    fun setResult(isBack: Boolean) {
+        activity?.let {
+            val intent = Intent()
+            val bundle = Bundle()
+            bundle.putBoolean(Constants.KeyMaps.From, isBack)
+            intent.putExtras(bundle)
+            it.setResult(RESULT_OK, intent)
+            it.finish()
+        }
+
+    }
+
 }
