@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import cn.catherine.token.R
 import cn.catherine.token.adapter.SettingsAdapter
-import cn.catherine.token.base.BaseActivity
 import cn.catherine.token.base.BaseFragment
 import cn.catherine.token.bean.SettingsBean
 import cn.catherine.token.constant.Constants
@@ -20,7 +19,7 @@ import cn.catherine.token.ui.aty.ModifyAuthorizedRepresentativesActivity
 import cn.catherine.token.view.dialog.BaseDialog
 import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.frg_setting.*
-import java.util.ArrayList
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 /*
@@ -65,33 +64,36 @@ class SettingFragment : BaseFragment() {
                 }
                 if (type is SettingsBean) {
                     val settingTypeBean = type as SettingsBean?
-                    when (settingTypeBean!!.tag) {
-                        Constants.SettingType.CHECK_WALLET_INFO -> intentToActivity(
-                            null,
-                            CheckWalletInfoActivity::class.java,
-                            false
-                        )
-                        Constants.SettingType.MODIFY_AUTH -> {
-                            // 判断当前是否选择了积分
-                            if (StringTool.isEmpty(GlobalVariableManager.blockService)) {
-                                showToast(resources.getString(R.string.select_token_please))
-                                return
+                    settingTypeBean?.let {
+                        when (it.tag) {
+                            Constants.SettingType.CHECK_WALLET_INFO -> intentToActivity(
+                                null,
+                                CheckWalletInfoActivity::class.java,
+                                false
+                            )
+                            Constants.SettingType.MODIFY_AUTH -> {
+                                // 判断当前是否选择了积分
+                                if (StringTool.isEmpty(GlobalVariableManager.blockService)) {
+                                    showToast(resources.getString(R.string.select_token_please))
+                                    return
+                                }
+                                /*请求授权代表*/
+                                /*1：获取最新的授权地址*/
+                                intentToActivity(null, ModifyAuthorizedRepresentativesActivity::class.java, false)
                             }
-                            /*请求授权代表*/
-                            /*1：获取最新的授权地址*/
-                            intentToActivity(null, ModifyAuthorizedRepresentativesActivity::class.java, false)
+                            Constants.SettingType.ADDRESS_MANAGE -> intentToActivity(
+                                null,
+                                AddressManagerActivity::class.java,
+                                false
+                            )
+                            Constants.SettingType.LANGUAGE_SWITCHING -> intentToActivity(
+                                null,
+                                LanguageSwitchingActivity::class.java,
+                                false
+                            )
                         }
-                        Constants.SettingType.ADDRESS_MANAGE -> intentToActivity(
-                            null,
-                            AddressManagerActivity::class.java,
-                            false
-                        )
-                        Constants.SettingType.LANGUAGE_SWITCHING -> intentToActivity(
-                            null,
-                            LanguageSwitchingActivity::class.java,
-                            false
-                        )
                     }
+
                 }
             }
         })

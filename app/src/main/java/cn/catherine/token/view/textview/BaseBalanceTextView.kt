@@ -1,5 +1,6 @@
 package cn.catherine.token.view.textview
 
+import android.content.Context
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.Gravity
@@ -28,22 +29,20 @@ import cn.catherine.token.tool.pop.ShowDetailPopWindow
 +--------------+---------------------------------
 */
 
-class BaseBalanceTextView(private val attrs: AttributeSet?) : TextView(context, attrs) {
+class BaseBalanceTextView(context: Context, private val attrs: AttributeSet?) : TextView(context, attrs) {
+    constructor(context: Context) : this(context, null)
+
     //是否显示pop
     private var showPop: Boolean = false
 
     init {
-        initView()
-
-    }
-
-    private fun initView() {
-        this.setOnClickListener { v ->
+        this.setOnClickListener {
             if (isShowPop()) {
                 showDetailPop(this@BaseBalanceTextView, text.toString())
             }
 
         }
+
     }
 
     fun isShowPop(): Boolean {
