@@ -18,17 +18,16 @@ package cn.catherine.token.tool
 
 object ListTool {
     //判断当前的list是否为空
+    @JvmStatic
     fun <T> isEmpty(list: List<T>?): Boolean {
-        if (list == null) {
-            return true
-        } else if (list.size == 0) {
+        if (list == null|| list.isEmpty()) {
             return true
         }
         return false
 
     }
 
-    fun <T> noEmpty(list: List<T>): Boolean {
+    fun <T> noEmpty(list: List<T>?): Boolean {
         return !isEmpty(list)
 
     }

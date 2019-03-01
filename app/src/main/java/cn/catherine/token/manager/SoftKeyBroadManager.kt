@@ -104,13 +104,13 @@ class SoftKeyBroadManager : ViewTreeObserver.OnGlobalLayoutListener {
         this.lastSoftKeyboardHeightInPx = keyboardHeightInPx
 
         for (listener in listeners) {
-            listener?.onSoftKeyboardOpened(keyboardHeightInPx, bottom)
+            listener.onSoftKeyboardOpened(keyboardHeightInPx, bottom)
         }
     }
 
     private fun notifyOnSoftKeyboardClosed() {
         for (listener in listeners) {
-            listener?.onSoftKeyboardClosed()
+            listener.onSoftKeyboardClosed()
         }
     }
 }

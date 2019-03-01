@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rl_private_key"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginRight="@dimen/x40"
+                android:layout_marginTop="@dimen/y20">
+
+    <EditText
+            android:id="@+id/et_private_key"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/x28"
+            android:textColor="@color/black_1d2124"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:inputType="textMultiLine"
+            android:lineSpacingExtra="@dimen/y6"
+            android:maxHeight="@dimen/y88"
+            android:textIsSelectable="true"
+            android:maxLines="2"
+            android:paddingRight="@dimen/x80"/>
+
+    <CheckBox
+            android:id="@+id/cb_pwd"
+            android:layout_width="@dimen/x50"
+            android:layout_height="@dimen/x50"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent"
+            android:button="@drawable/selector_cb_password"
+            android:checked="false"
+            android:gravity="center"/>
+
+</RelativeLayout>

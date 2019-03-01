@@ -1,41 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <dimen name="text_size_5">4.0sp</dimen>
-    <dimen name="text_size_6">4.800000000000001sp</dimen>
-    <dimen name="text_size_7">5.6000000000000005sp</dimen>
-    <dimen name="text_size_8">6.4sp</dimen>
-    <dimen name="text_size_9">7.2sp</dimen>
-    <dimen name="text_size_10">8.0sp</dimen>
-    <dimen name="text_size_11">8.8sp</dimen>
-    <dimen name="text_size_12">9.600000000000001sp</dimen>
-    <dimen name="text_size_13">10.4sp</dimen>
-    <dimen name="text_size_14">11.200000000000001sp</dimen>
-    <dimen name="text_size_15">12.0sp</dimen>
-    <dimen name="text_size_16">12.8sp</dimen>
-    <dimen name="text_size_17">13.600000000000001sp</dimen>
-    <dimen name="text_size_18">14.4sp</dimen>
-    <dimen name="text_size_19">15.200000000000001sp</dimen>
-    <dimen name="text_size_20">16.0sp</dimen>
-    <dimen name="text_size_21">16.8sp</dimen>
-    <dimen name="text_size_22">17.6sp</dimen>
-    <dimen name="text_size_23">18.400000000000002sp</dimen>
-    <dimen name="text_size_24">19.200000000000003sp</dimen>
-    <dimen name="text_size_25">20.0sp</dimen>
-    <dimen name="text_size_26">20.8sp</dimen>
-    <dimen name="text_size_27">21.6sp</dimen>
-    <dimen name="text_size_28">22.400000000000002sp</dimen>
-    <dimen name="text_size_29">23.200000000000003sp</dimen>
-    <dimen name="text_size_30">24.0sp</dimen>
-    <dimen name="text_size_31">24.8sp</dimen>
-    <dimen name="text_size_32">25.6sp</dimen>
-    <dimen name="text_size_33">26.400000000000002sp</dimen>
-    <dimen name="text_size_34">27.200000000000003sp</dimen>
-    <dimen name="text_size_35">28.0sp</dimen>
-    <dimen name="text_size_36">28.8sp</dimen>
-    <dimen name="text_size_37">29.6sp</dimen>
-    <dimen name="text_size_38">30.400000000000002sp</dimen>
-    <dimen name="text_size_39">31.200000000000003sp</dimen>
     <!--1.5-->
 
     <dimen name="x0">0.0px</dimen>

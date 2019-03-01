@@ -18,38 +18,41 @@ object LogTool {
     private const val I = "I"
     private const val line = "----------------------------"
 
+    @JvmStatic
     fun <T> d(tag: String, values: T?) {
         if (values == null) return
         printf(D, tag, values.toString())
     }
 
+    @JvmStatic
     fun <T> d(tag: String, valuesTag: T, values: T?) {
         if (values == null) return
         printf(D, tag, valuesTag.toString() + values)
     }
 
+    @JvmStatic
     fun <T> i(tag: String, values: T?) {
         if (values == null) return
         printf(I, tag, values.toString())
     }
 
-
+    @JvmStatic
     fun d(tag: String) {
         printf(D, tag, line)
     }
-
+    @JvmStatic
     fun d(tag: String, vararg values: String) {
         printf(D, tag, *values)
     }
 
+    @JvmStatic
     fun e(tag: String, vararg values: String) {
         printf(E, tag, *values)
     }
-
+    @JvmStatic
     fun v(tag: String, vararg values: String) {
         printf(V, tag, *values)
     }
-
 
     private fun printf(mark: String, tag: String, vararg values: String) {
         //需要打印的内容

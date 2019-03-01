@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/theme_grey"
+            android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <include layout="@layout/include_header"/>
+
+        <RelativeLayout
+                style="@style/bg_white_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/tv_address_key"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_1d2124"
+                    android:textSize="@dimen/x32"
+                    android:layout_marginTop="@dimen/y40"
+                    android:text="@string/account_address_en"/>
+
+            <ImageButton
+                    android:id="@+id/ib_copy"
+                    android:layout_width="@dimen/x64"
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@+id/tv_address_key"
+                    android:layout_alignBottom="@+id/tv_address_key"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/transparent"
+                    android:src="@mipmap/icon_copy"/>
+
+            <TextView
+                    android:id="@+id/tv_account_address_value"
+                    android:textColor="@color/black70_1d2124"
+                    android:textSize="@dimen/x28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tv_address_key"
+                    android:layout_marginTop="@dimen/y40"
+                    android:layout_toLeftOf="@+id/ib_copy"
+                    android:layout_toRightOf="@+id/tv_address_key"
+                    android:gravity="center_vertical|right"/>
+
+            <TextView
+                    android:id="@+id/tv_balance_key"
+                    android:textColor="@color/black_1d2124"
+                    android:textSize="@dimen/x32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_address_key"
+                    android:layout_marginTop="@dimen/y40"
+                    android:layout_marginBottom="@dimen/y40"
+                    android:text="@string/account_balance"/>
+
+            <cn.catherine.token.view.textview.BaseBalanceTextView
+                    android:id="@+id/bbt_balance"
+                    android:textSize="@dimen/x32"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/tv_address_key"
+                    android:layout_marginLeft="@dimen/x32"
+                    android:layout_marginTop="@dimen/y40"
+                    android:layout_marginBottom="@dimen/y40"
+                    android:layout_toLeftOf="@+id/tv_currency"
+                    android:layout_toRightOf="@+id/tv_balance_key"
+                    android:gravity="center|right"
+                    android:textColor="@color/orange_yellow"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:text="0"/>
+
+            <ProgressBar
+                    android:id="@+id/pb_balance"
+                    android:layout_width="@dimen/x40"
+                    android:layout_height="@dimen/y40"
+                    android:layout_below="@+id/tv_address_key"
+                    android:layout_marginTop="@dimen/y40"
+                    android:layout_marginRight="@dimen/x10"
+                    android:layout_marginBottom="@dimen/y40"
+                    android:layout_toLeftOf="@+id/tv_currency"
+                    android:layout_toRightOf="@+id/tv_balance_key"
+                    android:gravity="center|right"
+                    android:indeterminateTint="@color/orange_yellow"
+                    android:visibility="gone"/>
+
+
+            <TextView
+                    android:id="@+id/tv_currency"
+                    android:textColor="@color/black_1d2124"
+                    android:textSize="@dimen/x28"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/tv_address_key"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginTop="@dimen/y20"
+                    android:drawableRight="@mipmap/icon_select_red"
+                    android:drawablePadding="@dimen/x20"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/y20"
+                    android:paddingRight="@dimen/x20"
+                    android:paddingBottom="@dimen/y20"
+                    android:text="@string/wait_select_currency"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+                style="@style/bg_white_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y4"
+                android:orientation="vertical">
+
+            <TextView
+                    android:textColor="@color/black_1d2124"
+                    android:textSize="@dimen/x32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y40"
+                    android:text="@string/private_key"/>
+
+            <TextView
+                    android:textColor="@color/black30_1d2124"
+                    android:textSize="@dimen/x28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y32"
+                    android:lineSpacingExtra="@dimen/y3"
+                    android:text="@string/save_private_key_hint"/>
+
+            <include
+                    layout="@layout/include_edit_text_private_key"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y32"
+                    android:layout_marginBottom="@dimen/y40"/>
+        </LinearLayout>
+
+        <LinearLayout
+                style="@style/bg_white_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y4"
+                android:layout_marginBottom="@dimen/y4"
+                android:orientation="vertical">
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/x32"
+                    android:textColor="@color/black_1d2124"
+                    android:layout_marginTop="@dimen/y40"
+                    android:text="@string/send_wallet_file_by_email"/>
+
+            <TextView
+                    android:layout_marginTop="@dimen/y32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/x28"
+                    android:textColor="@color/black30_1d2124"
+                    android:lineSpacingExtra="@dimen/y6"
+                    android:text="@string/email_json_rule"/>
+
+            <Button
+                    android:id="@+id/btnSendEmail"
+                    style="@style/button_style"
+                    android:layout_marginLeft="@dimen/x6"
+                    android:layout_marginTop="@dimen/y32"
+                    android:layout_marginRight="@dimen/x6"
+                    android:layout_marginBottom="@dimen/y40"
+                    android:text="@string/send_email"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

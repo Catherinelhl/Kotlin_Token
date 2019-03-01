@@ -9,7 +9,6 @@ import android.view.Gravity
 import android.widget.Toast
 import cn.catherine.token.R
 import cn.catherine.token.manager.DataGenerationManager
-import cn.catherine.token.ui.aty.MainActivity
 
 /**
  *
@@ -53,7 +52,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun intentToActivity(bundle: Bundle?, classTo: Class<*>, finishFrom: Boolean) {
         this.intentToActivity(bundle, classTo, finishFrom,   false)
-
     }
 
 

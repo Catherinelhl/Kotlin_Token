@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="@dimen/x200"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginTop="@dimen/y40"
+                android:layout_marginRight="@dimen/x40">
+
+    <TextView
+            android:id="@+id/tv_title"
+            android:textSize="@dimen/x36"
+            android:textColor="@color/black_1d2124"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y32"
+            android:gravity="center"
+            android:text="@string/warning"/>
+
+    <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_1d2124"
+            android:layout_below="@+id/tv_title"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/x28"
+            android:layout_marginLeft="@dimen/x32"
+            android:layout_marginRight="@dimen/x32"
+            android:layout_marginTop="@dimen/y10"
+            android:gravity="center"/>
+
+    <View
+            android:id="@+id/line"
+            style="@style/line_style"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2"
+            android:layout_below="@+id/tv_content"
+            android:layout_marginTop="@dimen/y32"/>
+
+    <Button
+            android:id="@+id/btn_sure"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y96"
+            android:layout_below="@+id/line"
+            android:background="@color/transparent"
+            android:text="@string/confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/black50_1d2124"
+            android:textSize="@dimen/x32"/>
+
+</RelativeLayout>

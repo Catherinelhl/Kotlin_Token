@@ -70,17 +70,17 @@ object Constants {
 
     }
     object Time {
-        const val sleep500: Int = 500
-        const val sleep400: Int = 400
-        const val sleep200: Int = 200
-        const val sleep100: Int = 100
-        const val sleep1000: Int = 1000
-        const val sleep10000: Int = 10000
-        const val sleep800: Int = 800
-        const val sleep2000: Int = 2000
+        const val sleep500: Long = 500
+        const val sleep400: Long = 400
+        const val sleep200: Long = 200
+        const val sleep100: Long = 100
+        const val sleep1000: Long = 1000
+        const val sleep10000: Long = 10000
+        const val sleep800: Long = 800
+        const val sleep2000: Long = 2000
         const val INTERNET_TIME_OUT: Long = 5 * 60 * 1000//内网连接时间，ms，超时5s之后
         const val EXTERNAL_TIME_OUT: Long = 10 * 60 * 1000//外网连接超时时间，超过10s之后
-        const val STAY_AUTH_ACTIVITY: Int = 3//如果当前不用编辑页面，停留在页面的时间3s
+        const val STAY_AUTH_ACTIVITY: Long = 3//如果当前不用编辑页面，停留在页面的时间3s
         const val STAY_BRAND_ACTIVITY: Long = 2//如果当前不用编辑页面，停留在页面的时间2s
 
         const val LONG_TIME_OUT: Long = 30//设置超时时间
@@ -93,8 +93,8 @@ object Constants {
         const val GET_BALANCE: Long = 10//获取餘額
         const val HEART_BEAT: Long = 30//TCP  C-S 发送心跳信息间隔
         const val PRINT_LOG: Long = 1 //打印当前设备的内存
-        const val TOAST_LONG: Int = 3
-        const val TOAST_SHORT: Int = 0
+        const val TOAST_LONG: Long = 3
+        const val TOAST_SHORT: Long = 0
     }
 
 

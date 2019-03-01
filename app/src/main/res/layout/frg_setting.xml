@@ -24,6 +24,6 @@
             android:text="@string/logout"
             android:textAllCaps="false"
             android:textColor="@color/black_1d2124"
-            android:textSize="@dimen/text_size_16" />
+            android:textSize="@dimen/x32" />
 
 </LinearLayout>
