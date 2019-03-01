@@ -1,36 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:background="@color/theme_grey"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/ll_send"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/theme_grey"
+              android:orientation="vertical"
+              android:scrollbars="vertical">
 
-        android:scrollbars="vertical"
-        android:layout_marginBottom="@dimen/y10"
-        android:layout_height="match_parent">
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
             android:layout_height="wrap_content">
+        <View
+                style="@style/v_shape_style"
+                android:layout_below="@+id/rl_amount_info"/>
         <RelativeLayout
-                android:id="@+id/top_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/x20"
-                android:background="@mipmap/img_bg_home"
-        />
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_margin="@dimen/x10"
-                android:background="@color/white"
-        >
-            <ListView android:layout_width="match_parent"
-                      android:layout_height="@dimen/x200">
+                android:id="@+id/rl_amount_info"
+                style="@style/bg_gradual_change_style"
+                android:layout_marginTop="@dimen/y20">
 
-            </ListView>
+            <TextView
+                    android:id="@+id/tv_address_key"
+                    style="@style/blue_16_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y52"
+                    android:text="@string/my_account"/>
+
+            <ImageButton
+                    android:id="@+id/ib_copy"
+                    android:layout_width="@dimen/x64"
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@+id/tv_address_key"
+                    android:layout_alignBottom="@+id/tv_address_key"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/transparent"
+                    android:src="@mipmap/icon_copy_white"/>
+
+
+            <TextView
+                    android:id="@+id/tv_account_address_value"
+                    style="@style/black_14_text_style"
+                    android:layout_below="@+id/tv_address_key"
+                    android:layout_marginTop="@dimen/y40"
+                    android:ellipsize="middle"/>
+
         </RelativeLayout>
+
+    </RelativeLayout>
+    <LinearLayout
+            android:id="@+id/ll_transaction_info"
+            style="@style/bg_white_style"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y28"
+            android:layout_marginBottom="@dimen/y34"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/x0"
+            android:paddingRight="@dimen/x0">
+
+        <TextView
+                android:id="@+id/tv_transaction_block_title"
+                style="@style/blue_16_text_style"
+                android:layout_marginTop="@dimen/y40"
+                android:paddingLeft="@dimen/x24"
+                android:paddingRight="@dimen/x24"
+                android:text="@string/please_choose"/>
+
+        <View
+                android:id="@+id/v_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y1"
+                android:layout_marginTop="@dimen/y32"
+                android:background="@color/black20_1d2124"/>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/srl_all_currency"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_all_currency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_all_currency_list"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
-</ScrollView>
+</LinearLayout>
+
+

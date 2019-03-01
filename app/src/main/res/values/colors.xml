@@ -4,7 +4,8 @@
     <color name="button_left_color">#F09657</color>
     <color name="button_right_color">#EC5E59</color>
     <color name="shadow50_color">#80FB7E54</color>
-
+    <color name="purple_E0C3FC">#E0C3FC</color>
+    <color name="blue_8EC5FC">#8EC5FC</color>
     <color name="white">#ffffff</color>
     <color name="white30">#4Dffffff</color>
     <!--TV white-->
