@@ -2,8 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="cn.catherine.token">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+
     <application
             android:name=".base.BaseApplication"
             android:allowBackup="true"
@@ -56,6 +62,9 @@
                   android:launchMode="singleTask"
         />
         <activity android:name="cn.catherine.token.ui.aty.CreateWalletActivity"
+                  android:launchMode="singleTask"
+        />
+        <activity android:name="cn.catherine.token.ui.aty.SetPasswordForImportWalletActivity"
                   android:launchMode="singleTask"
         />
     </application>

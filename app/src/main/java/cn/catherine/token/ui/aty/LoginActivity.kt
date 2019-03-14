@@ -1,19 +1,20 @@
 package cn.catherine.token.ui.aty
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.view.View
-import cn.catherine.token.BuildConfig
 import cn.catherine.token.R
 import cn.catherine.token.base.BaseActivity
 import cn.catherine.token.base.BaseApplication
 import cn.catherine.token.constant.Constants
-import cn.catherine.token.manager.AppManager
 import cn.catherine.token.manager.SoftKeyBroadManager
+import cn.catherine.token.tool.LogTool
 import cn.catherine.token.tool.SoftKeyBoardTool
 import cn.catherine.token.tool.StringTool
 import cn.catherine.token.tool.wallet.WalletDBTool
+import cn.catherine.token.ui.constract.LoginContracts
+import cn.catherine.token.ui.presenter.LoginPresenterImp
 import cn.catherine.token.view.dialog.BaseDialog
 import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.aty_login.*
@@ -38,7 +39,26 @@ import java.util.concurrent.TimeUnit
 +
 */
 
-class LoginActivity : BaseActivity() {
+class LoginActivity : BaseActivity(), LoginContracts.View {
+    override fun loginSuccess() {
+
+    }
+
+    override fun passwordError() {
+    }
+
+    override fun updateVersion(forceUpgrade: Boolean, appStoreUrl: String, updateUrl: String) {
+    }
+
+    override fun getAndroidVersionInfoFailure() {
+    }
+
+
+    override fun loginFailure() {
+
+    }
+
+    private val presenter: LoginContracts.Presenter by lazy { LoginPresenterImp(this) }
 
     override fun getArgs(bundle: Bundle) {
 
@@ -163,7 +183,46 @@ class LoginActivity : BaseActivity() {
     }
 
 
-    fun noWalletInfo() {
+    override fun noWalletInfo() {
         showToast(resources.getString(R.string.no_wallet))
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (data == null) {
+                return
+            }
+            if (requestCode == Constants.REQUEST_CODE_IMPORT) {
+                // 跳轉「導入」返回
+                val bundle = data.extras
+                if (bundle != null) {
+                    val isBack = bundle.getBoolean(Constants.KeyMaps.From)
+                    if (!isBack) {
+                        //點擊導入回來，然後進行登錄
+                        loginWallet()
+                    }
+                }
+            } else if (requestCode == Constants.REQUEST_CODE_CREATE) {
+                //跳轉「創建」返回
+                val bundle = data.extras
+                if (bundle != null) {
+                    val isBack = bundle.getBoolean(Constants.KeyMaps.From)
+                    LogTool.d(tag, isBack)
+                    if (!isBack) {
+                        loginWallet()
+                    }
+                }
+            }
+        }
+    }
+
+
+    //「導入」、「創建」、「解鎖」點擊之後前去請求「登錄」
+    private fun loginWallet() {
+        //點擊創建回來，然後進行登錄
+        if (presenter != null) {
+            presenter.getRealIpForLoginRequest()
+        }
     }
 }

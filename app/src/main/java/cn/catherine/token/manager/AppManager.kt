@@ -29,7 +29,6 @@ class AppManager {
 
     private var activity: Activity? = null
 
-    constructor()
     constructor(activity: Activity) {
         this.activity = activity
     }

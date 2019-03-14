@@ -72,9 +72,7 @@ class ImportWalletActivity : BaseActivity() {
         val subscribeSure = RxView.clicks(btn_sure)
             .throttleFirst(Constants.Time.sleep800, TimeUnit.MILLISECONDS)
             .subscribe { o ->
-                activity?.let {
-                    SoftKeyBoardTool(it).hideSoftKeyboard()
-                }
+                SoftKeyBoardTool(activity).hideSoftKeyboard()
                 val privateKey = et_private_key.text.toString()
                 if (StringTool.isEmpty(privateKey)) {
                     showToast(resources.getString(R.string.enter_private_key))
@@ -147,11 +145,8 @@ class ImportWalletActivity : BaseActivity() {
                     val isBack = bundle.getBoolean(Constants.KeyMaps.From)
                     LogTool.d(tag, isBack)
                     if (!isBack) {
-                        activity?.let {
-                            //點擊「導入」按鈕，那麼應該關閉當前頁面，然後進行登錄
-                            AppManager(activity).setResult(false)
-                        }
-
+                        //點擊「導入」按鈕，那麼應該關閉當前頁面，然後進行登錄
+                        AppManager(activity).setResult(false)
                     }
                 }
             }

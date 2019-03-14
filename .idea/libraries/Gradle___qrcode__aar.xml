@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: :qrcode:@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/qrcode.aar/aa15b27e608168eee883a1ce5516bbf3/jars/libs/zxing.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/qrcode.aar/aa15b27e608168eee883a1ce5516bbf3/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/qrcode.aar/aa15b27e608168eee883a1ce5516bbf3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/qrcode.aar/ddeddfe9c9d322f6399642038eeb1b8d/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/qrcode.aar/ddeddfe9c9d322f6399642038eeb1b8d/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/qrcode.aar/ddeddfe9c9d322f6399642038eeb1b8d/jars/libs/zxing.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

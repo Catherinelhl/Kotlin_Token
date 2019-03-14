@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.widget.Toast
 import cn.catherine.token.R
+import cn.catherine.token.gson.ResponseJson
 import cn.catherine.token.manager.DataGenerationManager
+import cn.catherine.token.tool.SoftKeyBoardTool
 
 /**
  *
@@ -19,7 +21,7 @@ import cn.catherine.token.manager.DataGenerationManager
  * @version
  *
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(),BaseContract.View {
 
     val activity by lazy { this }
     val tag by lazy { activity::class.java.simpleName }
@@ -78,5 +80,25 @@ abstract class BaseActivity : AppCompatActivity() {
             toast.show()
         }
     }
+    /*隐藏当前键盘*/
+    fun hideSoftKeyboard() {
+        activity?.let {
+            SoftKeyBoardTool(it).hideSoftKeyboard()
+        }
+    }
 
+    override fun showLoading() {
+    }
+
+    override fun hideLoading() {
+    }
+
+    override fun httpExceptionStatus(responseJson: ResponseJson) {
+    }
+
+    override fun connectFailure() {
+    }
+
+    override fun noNetWork() {
+    }
 }
