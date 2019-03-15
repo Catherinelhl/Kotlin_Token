@@ -1,16 +1,32 @@
 package cn.catherine.token.base
 
+import android.app.Activity
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.ServiceConnection
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.IBinder
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.widget.Toast
 import cn.catherine.token.R
+import cn.catherine.token.constant.MessageConstants
 import cn.catherine.token.gson.ResponseJson
+import cn.catherine.token.listener.PermissionListener
 import cn.catherine.token.manager.DataGenerationManager
+import cn.catherine.token.service.DownloadService
+import cn.catherine.token.tool.LogTool
+import cn.catherine.token.tool.PermissionTool
 import cn.catherine.token.tool.SoftKeyBoardTool
+import cn.catherine.token.view.dialog.BaseDownloadDialog
+import io.reactivex.Observable
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 /**
  *
@@ -21,11 +37,13 @@ import cn.catherine.token.tool.SoftKeyBoardTool
  * @version
  *
  */
-abstract class BaseActivity : AppCompatActivity(),BaseContract.View {
+abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
 
-    val activity by lazy { this }
+    val activity: Activity by lazy { this }
     val tag by lazy { activity::class.java.simpleName }
     val context: Context by lazy { applicationContext }
+    //存储当前需要更新的Android APk路径
+    protected var updateAndroidAPKURL: String? = null
     val dataGenerationManager: DataGenerationManager by lazy { DataGenerationManager() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,11 +98,10 @@ abstract class BaseActivity : AppCompatActivity(),BaseContract.View {
             toast.show()
         }
     }
+
     /*隐藏当前键盘*/
     fun hideSoftKeyboard() {
-        activity?.let {
-            SoftKeyBoardTool(it).hideSoftKeyboard()
-        }
+        SoftKeyBoardTool(activity).hideSoftKeyboard()
     }
 
     override fun showLoading() {
@@ -101,4 +118,5 @@ abstract class BaseActivity : AppCompatActivity(),BaseContract.View {
 
     override fun noNetWork() {
     }
+
 }

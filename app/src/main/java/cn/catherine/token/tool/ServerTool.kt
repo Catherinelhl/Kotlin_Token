@@ -44,7 +44,7 @@ object ServerTool {
     /**
      * 添加国际版SIT服务器（开发）
      */
-    fun addInternationalSTIServers(): List<ServerBean> {
+    private fun addInternationalSTIServers(): List<ServerBean> {
         val SFNServerBeanDefaultList = ArrayList<ServerBean>()
 
         SFNServerBeanDefaultList.add(
@@ -71,7 +71,7 @@ object ServerTool {
     /**
      * 添加国际版UAT服务器（开发）
      */
-    fun addInternationalUATServers(): List<ServerBean> {
+    private fun addInternationalUATServers(): List<ServerBean> {
         val SFNServerBeanDefaultList = ArrayList<ServerBean>()
 
         SFNServerBeanDefaultList.add(
@@ -107,7 +107,7 @@ object ServerTool {
     /**
      * 添加国际版PRO服务器(正式)
      */
-    fun addInternationalPRDServers(): List<ServerBean> {
+    private fun addInternationalPRDServers(): List<ServerBean> {
         val SFNServerBeanDefaultList = ArrayList<ServerBean>()
 
         //国际PRD AWSJP

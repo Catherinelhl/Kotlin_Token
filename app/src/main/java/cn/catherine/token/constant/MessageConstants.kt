@@ -76,9 +76,11 @@ object MessageConstants {
     const val CODE_3001 = 3001
     const val ERROR_REDIS_CONNECTION_POOL = "Redis connection pool error."
     const val CODE_3003 = 3003
-    const val ERROR_REDIS_BLOCKSERVICE_AUTHNODE_MAPPING_LIST_NOT_FOUND = "Redis BlockService authnode mapping list not found."
+    const val ERROR_REDIS_BLOCKSERVICE_AUTHNODE_MAPPING_LIST_NOT_FOUND =
+        "Redis BlockService authnode mapping list not found."
     const val CODE_3004 = 3004
-    const val ERROR_REDIS_BLOCKSERVICE_FULLNODE_MAPPING_LIST_NOT_FOUND = "Redis BlockService fullnode mapping list not found."
+    const val ERROR_REDIS_BLOCKSERVICE_FULLNODE_MAPPING_LIST_NOT_FOUND =
+        "Redis BlockService fullnode mapping list not found."
     const val CODE_3005 = 3005
     const val ERROR_REDIS_RUNTIME_EXCEPTION = "Redis runtime exception."
     const val CODE_3006 = 3006
@@ -133,7 +135,7 @@ object MessageConstants {
     const val GET_BALANCE = "getBalance:"
     const val GET_LATEST_BLOCK_AND_BALANCE = "getLatestBlockAndBalance:"
     const val WALLET_INFO = "WalletBean by parse keystore :"
-    const val WALLET_CREATE_EXCEPTION= "Use PrivateKey WIFStr Create Exception "
+    const val WALLET_CREATE_EXCEPTION = "Use PrivateKey WIFStr Create Exception "
     const val GET_TCP_DATA_EXCEPTION = "获取TCP数据返回code!=200的异常:"
     const val TO_LOGIN = "to login"
     const val BIND_TCP_SERVICE = "bind tcp service"
@@ -268,6 +270,9 @@ object MessageConstants {
         const val SERVICE_TAG = "[Service] \r"
         const val VERIFY_TAG = "[Verify] \r"
         const val RESET_TAG = "[Reset]"
+        const val REQUEST_JSON = "【RequestJson】"
+        const val RESPONSE_JSON = "【ResponseJson】"
 
     }
+
 }

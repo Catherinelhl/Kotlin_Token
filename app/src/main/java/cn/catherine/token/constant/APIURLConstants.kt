@@ -35,7 +35,7 @@ object APIURLConstants {
     //取得幣種清單
     const val API_GET_BLOCK_SERVICE_LIST = "/publicUnit/getList"
     // 检查Android版本信息
-    const val API_GET_ANDROID_VERSION_INFO = "/getAndroidVersionInfo"
+    const val API_GET_ANDROID_VERSION_INFO = "/checkVersionInfo"
     //获取当前wallet的外网IP
     const val API_GET_MY_IP_INFO = "/ipInfo/getMyIPInfo"
 

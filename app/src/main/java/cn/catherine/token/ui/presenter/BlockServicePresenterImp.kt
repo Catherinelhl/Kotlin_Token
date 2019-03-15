@@ -10,7 +10,6 @@ import cn.catherine.token.gson.ResponseJson
 import cn.catherine.token.http.callback.BaseCallback
 import cn.catherine.token.http.requester.BaseHttpRequester
 import cn.catherine.token.manager.GlobalVariableManager
-import cn.catherine.token.manager.GlobalVariableManager.Companion.getWalletAddress
 import cn.catherine.token.tool.ListTool
 import cn.catherine.token.tool.LogTool
 import cn.catherine.token.tool.StringTool
@@ -51,7 +50,7 @@ class BlockServicePresenterImp(private val view: BlockServiceContracts.View) : B
             return
         }
         val walletVO = WalletVO()
-        walletVO.walletAddress = GlobalVariableManager.getWalletAddress()
+        walletVO.walletAddress = GlobalVariableManager().getWalletAddress()
         val requestJson = RequestJson(walletVO)
         LogTool.d(TAG, requestJson)
         val requestBody = GsonTool.beanToRequestBody(requestJson)

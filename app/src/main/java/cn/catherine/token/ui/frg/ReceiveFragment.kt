@@ -35,7 +35,7 @@ class ReceiveFragment : BaseFragment() {
     override fun getLayoutRes(): Int = R.layout.frg_receive
 
     override fun initViews(view: View) {
-        val address = GlobalVariableManager.getWalletAddress()
+        val address = GlobalVariableManager().getWalletAddress()
         if (StringTool.isEmpty(address)) {
             showToast(resources.getString(R.string.account_data_error))
         } else {

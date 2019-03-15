@@ -106,7 +106,7 @@ abstract class BaseFragment : Fragment() {
 
     fun showBaseDialog(message: String, confirmClickListener: BaseDialog.ConfirmClickListener) {
         activity?.let {
-            BaseDialog().showBcaasDialog(
+            BaseDialog().showDialog(
                 it, resources.getString(R.string.warning),
                 resources.getString(R.string.cancel),
                 resources.getString(R.string.confirm),

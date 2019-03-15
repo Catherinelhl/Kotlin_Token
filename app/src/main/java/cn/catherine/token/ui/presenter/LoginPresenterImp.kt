@@ -108,12 +108,12 @@ class LoginPresenterImp(private val view: LoginContracts.View) : LoginContracts.
      */
     private fun loginWithRealIp() {
         //获取当前钱包的地址
-        val walletVO = WalletVO(GlobalVariableManager.getWalletAddress())
+        val walletVO = WalletVO(GlobalVariableManager().getWalletAddress())
         //添加当前RealIp参数
         val remoteInfoVO = RemoteInfoVO(GlobalVariableManager.walletExternalIp)
         val requestJson = RequestJson(walletVO)
         requestJson.remoteInfoVO = remoteInfoVO
-        LogTool.d(TAG, requestJson)
+        GsonTool.logInfo(TAG,MessageConstants.LogInfo.REQUEST_JSON,"loginWithRealIp:",requestJson)
         val body = GsonTool.beanToRequestBody(requestJson)
         baseHttpRequester.login(body, object : Callback<ResponseJson> {
             override fun onResponse(call: Call<ResponseJson>, response: Response<ResponseJson>) {
@@ -181,11 +181,13 @@ class LoginPresenterImp(private val view: LoginContracts.View) : LoginContracts.
         }
     }
 
-
-    override fun getAndroidVersionInfo() {
+    /**
+     *檢查當前是否有需要更新的版本信息
+     */
+    override fun checkVersionInfo() {
         val versionVO = VersionVO(Constants.ValueMaps.AUTH_KEY)
         val requestJson = RequestJson(versionVO)
-        LogTool.d(TAG, requestJson)
+        GsonTool.logInfo(TAG,MessageConstants.LogInfo.REQUEST_JSON,"checkVersionInfo:",requestJson)
         val requestBody = GsonTool.beanToRequestBody(requestJson)
         baseHttpRequester.getAndroidVersionInfo(requestBody, object : Callback<ResponseJson> {
             override fun onResponse(call: Call<ResponseJson>, response: Response<ResponseJson>) {
@@ -232,7 +234,7 @@ class LoginPresenterImp(private val view: LoginContracts.View) : LoginContracts.
      * @param versionVO
      */
     private fun parseVersionInfo(versionVO: VersionVO?) {
-        LogTool.d(TAG, versionVO)
+        GsonTool.logInfo(TAG,MessageConstants.LogInfo.RESPONSE_JSON,"parseVersionInfo:",versionVO)
         //1:得到服务器返回的更新信息
         val versionName = versionVO!!.version
         //2：比对当前的versionName和服务器返回的Version进行比对

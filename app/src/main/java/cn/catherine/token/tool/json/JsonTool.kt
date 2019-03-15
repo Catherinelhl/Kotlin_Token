@@ -94,7 +94,7 @@ object JsonTool {
      * }"
      */
     fun getRequestJson(): RequestJson? {
-        val walletAddress = GlobalVariableManager.getWalletAddress()
+        val walletAddress = GlobalVariableManager().getWalletAddress()
         val accessToken = PreferenceTool.getInstance().getString(Constants.Preference.ACCESS_TOKEN)
         val blockService = GlobalVariableManager.blockService
         if (StringTool.isEmpty(walletAddress)
@@ -125,7 +125,7 @@ object JsonTool {
      * *}"
      */
     fun getRequestJsonWithRealIp(): RequestJson? {
-        val walletAddress = GlobalVariableManager.getWalletAddress()
+        val walletAddress = GlobalVariableManager().getWalletAddress()
         val accessToken = PreferenceTool.getInstance().getString(Constants.Preference.ACCESS_TOKEN)
         val blockService = GlobalVariableManager.blockService
         if (StringTool.isEmpty(walletAddress)

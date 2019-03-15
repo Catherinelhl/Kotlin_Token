@@ -102,7 +102,7 @@ object RetrofitFactory {
         val serverBean = ServerTool.getDefaultServerBean()
         var apiServer: String? = null
         if (serverBean != null) {
-            apiServer = serverBean!!.getApiServer()
+            apiServer = serverBean.apiServer
         }
         APIInstance = Retrofit.Builder()
             .baseUrl(apiServer!!)

@@ -14,6 +14,7 @@ import cn.catherine.token.event.NetStateChangeEvent
 import cn.catherine.token.receiver.NetStateReceiver
 import cn.catherine.token.tool.LogTool
 import cn.catherine.token.tool.PreferenceTool
+import cn.catherine.token.tool.ServerTool
 import cn.catherine.token.tool.StringTool
 import cn.catherine.token.tool.language.LanguageTool
 import com.google.common.eventbus.Subscribe
@@ -64,6 +65,7 @@ class BaseApplication : MultiDexApplication() {
         getScreenMeasure()
         createDB()
         registerNetStateReceiver()
+        ServerTool.initServerData()
         //初始化RouterFit SDK
 //        Routerfit.init(this)
     }

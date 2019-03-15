@@ -42,7 +42,7 @@ class SettingPresenterImp(private val viewInterface: SettingContract.View) : Set
             viewInterface.noNetWork()
             return
         }
-        val address = GlobalVariableManager.getWalletAddress()
+        val address = GlobalVariableManager().getWalletAddress()
         if (StringTool.isEmpty(address)) {
             viewInterface.accountError()
             return

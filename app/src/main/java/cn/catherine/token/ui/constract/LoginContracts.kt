@@ -21,26 +21,27 @@ import cn.catherine.token.base.BaseContract
 interface LoginContracts {
 
     interface View : BaseContract.View {
-        abstract fun noWalletInfo() //当前没有钱包，需要用户创建或者导入
+        fun noWalletInfo() //当前没有钱包，需要用户创建或者导入
 
-        abstract fun loginFailure() //登录失败
+        fun loginFailure() //登录失败
 
-        abstract fun loginSuccess()
+        fun loginSuccess()
 
-        abstract fun passwordError()
+        fun passwordError()
 
         /*更新版本，是否强制更新*/
-        abstract fun updateVersion(forceUpgrade: Boolean, appStoreUrl: String, updateUrl: String)
+        fun updateVersion(forceUpgrade: Boolean, appStoreUrl: String, updateUrl: String)
 
-        abstract fun getAndroidVersionInfoFailure() //檢查更新失敗
+        fun getAndroidVersionInfoFailure() //檢查更新失敗
     }
 
     interface Presenter {
-        abstract fun queryWalletFromDB(password: String)
+        fun queryWalletFromDB(password: String)
 
-        abstract fun getRealIpForLoginRequest()
+        fun getRealIpForLoginRequest()
 
         //获取BCAASC Android版本信息，查看是否需要更新
-        abstract fun getAndroidVersionInfo()
+        fun checkVersionInfo
+                    ()
     }
 }

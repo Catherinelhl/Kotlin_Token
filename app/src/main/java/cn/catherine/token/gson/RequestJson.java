@@ -67,6 +67,7 @@ public class RequestJson extends ClientRequestJson {
     }
 
     public RequestJson(WalletVO walletVO) {
+        super();
         this.walletVO = walletVO;
     }
 

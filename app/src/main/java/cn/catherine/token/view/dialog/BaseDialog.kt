@@ -102,6 +102,24 @@ class BaseDialog(context: Context, themeResId: Int) : Dialog(context, themeResId
 
 
     var baseDialog: BaseDialog? = null
+
+    /**
+     * 显示对话框
+     *
+     * @param message
+     * @param listener
+     */
+    fun showDialog(activity: Activity, message: String, listener: BaseDialog.ConfirmClickListener) {
+        showDialog(
+            activity,
+            context.resources.getString(R.string.warning),
+            context.resources.getString(R.string.confirm),
+            context.resources.getString(R.string.cancel),
+            message,
+            listener
+        )
+    }
+
     /**
      * 显示对话框
      *
@@ -111,7 +129,7 @@ class BaseDialog(context: Context, themeResId: Int) : Dialog(context, themeResId
      * @param message
      * @param listener
      */
-    fun showBcaasDialog(activity: Activity,title: String, left: String, right: String, message: String, listener: BaseDialog.ConfirmClickListener
+    fun showDialog(activity: Activity, title: String, left: String, right: String, message: String, listener: BaseDialog.ConfirmClickListener
     ) {
         if (baseDialog == null) {
             baseDialog = BaseDialog(activity)

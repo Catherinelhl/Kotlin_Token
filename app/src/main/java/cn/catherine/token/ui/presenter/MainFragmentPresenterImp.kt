@@ -40,7 +40,7 @@ class MainFragmentPresenterImp (private val view:MainFragmentContracts.View ): M
     override fun getAccountDoneTC(nextObjectId: String) {
         val walletVO = WalletVO()
         walletVO.blockService = GlobalVariableManager.blockService
-        walletVO.walletAddress = GlobalVariableManager.getWalletAddress()
+        walletVO.walletAddress = GlobalVariableManager().getWalletAddress()
         val requestJson = RequestJson(walletVO)
         // 默认传0，
         val paginationVO = PaginationVO(nextObjectId)

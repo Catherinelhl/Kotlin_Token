@@ -1,4 +1,4 @@
-package cn.catherine.token.view.dialog
+package cn.catherine.token.view.pop
 
 import android.content.Context
 import android.graphics.Color

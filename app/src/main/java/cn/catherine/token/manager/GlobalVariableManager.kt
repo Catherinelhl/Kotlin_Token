@@ -27,6 +27,7 @@ import cn.catherine.token.vo.PublicUnitVO
 class GlobalVariableManager {
 
     companion object {
+        val TAG = GlobalVariableManager::class.java.simpleName
         /*当前登錄的钱包信息*/
         var walletBean: WalletBean? = null
         /*当前账户的币种*/
@@ -62,12 +63,14 @@ class GlobalVariableManager {
         fun resetWalletBalance() {
             this.walletBalance = MessageConstants.Empty
         }
+
         //获取与AN连线的Http请求
         fun getANHttpAddress(): String? {
             return if (StringTool.isEmpty(tcpIp) || tcpPort == 0) {
                 null
             } else Constants.SPLICE_CONVERTER(tcpIp, httpPort)
         }
+
         fun getNextObjectId(): String? {
             return if (StringTool.isEmpty(nextObjectId) || StringTool.equals(
                     nextObjectId,
@@ -83,11 +86,12 @@ class GlobalVariableManager {
             Companion.nextObjectId = nextObjectId
         }
 
-        fun getWalletAddress(): String? {
-            walletBean?.run {
-                return@run walletBean!!.address
-            }
-            return null
-        }
+
+    }
+
+    fun getWalletAddress(): String? {
+        LogTool.d(TAG, walletBean)
+        walletBean ?: return null
+        return walletBean!!.address
     }
 }

@@ -107,6 +107,7 @@ class WalletDBTool {
             }
         } catch (e: Exception) {
             e.printStackTrace()
+            LogTool.e(TAG,e.toString())
         }
 
         LogTool.d(TAG, MessageConstants.WALLET_INFO + walletBean!!)

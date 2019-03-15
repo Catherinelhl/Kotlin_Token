@@ -49,10 +49,10 @@ object MasterRequester {
     fun getMyIpInfo(getMyIpInfoListener: GetMyIpInfoListener) {
         //判断当前的请求是否存在
         disposeRequest(disposableGetRealIp)
-        val walletVO = WalletVO()
-        walletVO.walletAddress = GlobalVariableManager.getWalletAddress()
+        var walletVO = WalletVO( GlobalVariableManager().getWalletAddress())
+        LogTool.d(TAG,walletVO.walletAddress)
         val requestJson = RequestJson(walletVO)
-        LogTool.d(TAG, requestJson)
+        GsonTool.logInfo(TAG, MessageConstants.LogInfo.REQUEST_JSON, MessageConstants.getMyIpInfo, requestJson)
         val baseHttpRequester = BaseHttpRequester()
         baseHttpRequester.getMyIpInfo(GsonTool.beanToRequestBody(requestJson))
             .subscribeOn(Schedulers.io())
@@ -62,7 +62,12 @@ object MasterRequester {
                 }
 
                 override fun onNext(responseJson: ResponseJson) {
-                    LogTool.d(TAG, MessageConstants.getMyIpInfo + responseJson)
+                    GsonTool.logInfo(
+                        TAG,
+                        MessageConstants.LogInfo.RESPONSE_JSON,
+                        MessageConstants.getMyIpInfo,
+                        responseJson
+                    )
                     val remoteInfoVO = responseJson.remoteInfoVO
                     if (remoteInfoVO != null) {
                         val walletExternalIp = remoteInfoVO.realIP
@@ -71,11 +76,9 @@ object MasterRequester {
                             getMyIpInfoListener.responseGetMyIpInfo(true)
                         } else {
                             getMyIpInfoListener.responseGetMyIpInfo(false)
-
                         }
                     } else {
                         getMyIpInfoListener.responseGetMyIpInfo(false)
-
                     }
                 }
 
@@ -124,7 +127,7 @@ object MasterRequester {
                         } else if (code == MessageConstants.CODE_2014) {
                             // 需要替换AN的信息
                             if (walletVONew != null) {
-                                val clientIpInfoVO = walletVONew!!.getClientIpInfoVO()
+                                val clientIpInfoVO = walletVONew.clientIpInfoVO
                                 if (clientIpInfoVO != null) {
                                     GlobalVariableManager.clientIpInfoVO = clientIpInfoVO
                                     //重置AN成功，需要重新連結
@@ -185,7 +188,7 @@ object MasterRequester {
             return
         }
         disposeRequest(disposableReset)
-        LogTool.d(TAG, MessageConstants.REQUEST_JSON + requestJson!!)
+        LogTool.d(TAG, MessageConstants.REQUEST_JSON + requestJson)
         val baseHttpRequester = BaseHttpRequester()
         baseHttpRequester.resetAuthNode(GsonTool.beanToRequestBody(requestJson))
             .subscribeOn(Schedulers.io())

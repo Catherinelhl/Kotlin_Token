@@ -42,7 +42,6 @@ public class WalletVO implements Serializable {
     public WalletVO() {
         super();
     }
-
     public WalletVO(String walletAddress, String accessToken, String walletBalance, String blockService,
                     ClientIpInfoVO clientIpInfoVO, List<SeedFullNodeVO> seedFullNodeList, String blockType,
                     WalletHeightVO walletHeight) {

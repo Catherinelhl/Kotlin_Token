@@ -2,13 +2,17 @@ package cn.catherine.token.ui.aty
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import cn.catherine.token.R
 import cn.catherine.token.base.BaseActivity
 import cn.catherine.token.base.BaseApplication
 import cn.catherine.token.constant.Constants
+import cn.catherine.token.constant.MessageConstants
+import cn.catherine.token.event.NetStateChangeEvent
 import cn.catherine.token.manager.SoftKeyBroadManager
+import cn.catherine.token.manager.UpdateVersionManager
 import cn.catherine.token.tool.LogTool
 import cn.catherine.token.tool.SoftKeyBoardTool
 import cn.catherine.token.tool.StringTool
@@ -16,7 +20,9 @@ import cn.catherine.token.tool.wallet.WalletDBTool
 import cn.catherine.token.ui.constract.LoginContracts
 import cn.catherine.token.ui.presenter.LoginPresenterImp
 import cn.catherine.token.view.dialog.BaseDialog
+import cn.catherine.token.view.dialog.BaseSingleDialog
 import com.jakewharton.rxbinding2.view.RxView
+import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.aty_login.*
 import kotlinx.android.synthetic.main.include_edit_text_password.*
 import java.util.concurrent.TimeUnit
@@ -40,33 +46,25 @@ import java.util.concurrent.TimeUnit
 */
 
 class LoginActivity : BaseActivity(), LoginContracts.View {
-    override fun loginSuccess() {
-
-    }
-
-    override fun passwordError() {
-    }
-
-    override fun updateVersion(forceUpgrade: Boolean, appStoreUrl: String, updateUrl: String) {
-    }
-
-    override fun getAndroidVersionInfoFailure() {
-    }
-
-
-    override fun loginFailure() {
-
-    }
 
     private val presenter: LoginContracts.Presenter by lazy { LoginPresenterImp(this) }
+    private val updateVersionManager: UpdateVersionManager by lazy { UpdateVersionManager(this) }
 
     override fun getArgs(bundle: Bundle) {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        //檢查當前是否有更新的版本
+        presenter?.let { it.checkVersionInfo() }
+    }
+
     override fun getLayoutRes(): Int = R.layout.aty_login
 
     override fun initViews() {
+        //綁定下載服務
+        updateVersionManager.bindDownloadService()
         //添加软键盘监听
         SoftKeyBroadManager(btn_unlock_wallet, tv_import_wallet);
     }
@@ -99,8 +97,7 @@ class LoginActivity : BaseActivity(), LoginContracts.View {
                 if (WalletDBTool().existKeystoreInDB()) {
                     val password = et_password.text.toString()
                     if (StringTool.notEmpty(password)) {
-                        //TODO
-//                        presenter.queryWalletFromDB(password)
+                        presenter.queryWalletFromDB(password)
                     } else {
                         showToast(getString(R.string.enter_password))
                     }
@@ -115,7 +112,7 @@ class LoginActivity : BaseActivity(), LoginContracts.View {
                 //2：若客户端已经存储了钱包信息，需做如下提示
                 if (WalletDBTool().existKeystoreInDB()) {
                     activity?.let {
-                        BaseDialog().showBcaasDialog(it, resources.getString(R.string.warning),
+                        BaseDialog().showDialog(it, resources.getString(R.string.warning),
                             resources.getString(R.string.confirm),
                             resources.getString(R.string.cancel),
                             getString(R.string.create_wallet_dialog_message), object : BaseDialog.ConfirmClickListener {
@@ -146,7 +143,7 @@ class LoginActivity : BaseActivity(), LoginContracts.View {
             //2：若客户端已经存储了钱包信息，需做如下提示
             if (WalletDBTool().existKeystoreInDB()) {
                 activity?.let {
-                    BaseDialog().showBcaasDialog(it,
+                    BaseDialog().showDialog(it,
                         resources.getString(R.string.warning),
                         resources.getString(R.string.confirm),
                         resources.getString(R.string.cancel),
@@ -221,8 +218,93 @@ class LoginActivity : BaseActivity(), LoginContracts.View {
     //「導入」、「創建」、「解鎖」點擊之後前去請求「登錄」
     private fun loginWallet() {
         //點擊創建回來，然後進行登錄
-        if (presenter != null) {
-            presenter.getRealIpForLoginRequest()
+        presenter.getRealIpForLoginRequest()
+    }
+
+    @Subscribe
+    fun netStateChange(netStateChangeEvent: NetStateChangeEvent?) {
+        if (netStateChangeEvent != null) {
+            if (!netStateChangeEvent!!.isConnect) {
+                showToast(resources.getString(R.string.network_not_reachable))
+            }
+            BaseApplication.realNet = netStateChangeEvent.isConnect
+
         }
+    }
+
+
+    override fun loginSuccess() {
+        val bundle = Bundle()
+        bundle.putString(Constants.KeyMaps.From, Constants.ValueMaps.FROM_LOGIN)
+        intentToActivity(bundle, MainActivity::class.java, true)
+    }
+
+    override fun passwordError() {
+        showToast(resources.getString(R.string.password_error))
+    }
+
+    override fun updateVersion(forceUpgrade: Boolean, appStoreUrl: String, updateUrl: String) {
+
+        updateAndroidAPKURL = updateUrl
+        if (forceUpgrade) {
+            BaseSingleDialog().showDialog(
+                this,
+                resources.getString(R.string.app_need_update),
+                object : BaseSingleDialog.ConfirmClickListener {
+                    override fun sure() {
+                        // 开始后台执行下载应用，或许直接跳转应用商店
+                        intentToGooglePlay(appStoreUrl)
+                    }
+                })
+        } else {
+            BaseDialog().showDialog(
+                this,
+                resources.getString(R.string.app_need_update),
+                object : BaseDialog.ConfirmClickListener {
+                    override fun sure() {
+                        // 开始后台执行下载应用，或许直接跳转应用商店
+                        intentToGooglePlay(appStoreUrl)
+                    }
+
+                    override fun cancel() {
+                    }
+                })
+        }
+    }
+
+
+    /**
+     * 跳转google商店
+     *
+     * @param appStoreUrl
+     */
+    private fun intentToGooglePlay(appStoreUrl: String) {
+        LogTool.d(tag, MessageConstants.INTENT_GOOGLE_PLAY + appStoreUrl)
+        val intent = Intent(Intent.ACTION_VIEW)
+        // 打开google应用市场
+        intent.setPackage("com.android.vending")
+        LogTool.d(tag, Uri.parse(MessageConstants.GOOGLE_PLAY_MARKET + packageName))
+        //存在手机里没安装应用市场的情况，跳转会包异常，做一个接收判断
+        if (intent.resolveActivity(packageManager) != null) { //可以接收
+            startActivity(intent)
+        } else {
+            //没有应用市场，我们通过浏览器跳转到Google Play
+            intent.data = Uri.parse(appStoreUrl)
+            //这里存在一个极端情况就是有些用户浏览器也没有，再判断一次
+            if (intent.resolveActivity(packageManager) != null) { //有浏览器
+                startActivity(intent)
+            } else {
+                //否则跳转应用内下载
+                updateVersionManager.startAppSYNCDownload()
+            }
+        }
+    }
+
+    override fun getAndroidVersionInfoFailure() {
+    }
+
+
+    override fun loginFailure() {
+        showToast(resources.getString(R.string.login_failure))
     }
 }

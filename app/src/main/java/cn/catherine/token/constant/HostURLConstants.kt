@@ -19,7 +19,7 @@ package cn.catherine.token.constant
 object HostURLConstants {
 
     /*存储当前连接服务器的类型 国际PRD*/
-     var serverType = Constants.ServerType.INTERNATIONAL_SIT
+     var serverType = Constants.ServerType.INTERNATIONAL_PRD
 
     /****************HTTP [SFN] API [START]  */
     /*Internet*/
