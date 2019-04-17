@@ -23,7 +23,7 @@ object StringTool {
         return TextUtils.isEmpty(content)
     }
 
-    fun notEmpty(content: String): Boolean {
+    fun notEmpty(content: String?): Boolean {
         return !isEmpty(content)
     }
 

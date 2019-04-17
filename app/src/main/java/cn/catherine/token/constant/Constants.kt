@@ -78,8 +78,8 @@ object Constants {
         const val sleep10000: Long = 10000
         const val sleep800: Long = 800
         const val sleep2000: Long = 2000
-        const val INTERNET_TIME_OUT: Long = 5 * 60 * 1000//内网连接时间，ms，超时5s之后
-        const val EXTERNAL_TIME_OUT: Long = 10 * 60 * 1000//外网连接超时时间，超过10s之后
+        const val INTERNET_TIME_OUT: Int = 5 * 60 * 1000//内网连接时间，ms，超时5s之后
+        const val EXTERNAL_TIME_OUT: Int = 10 * 60 * 1000//外网连接超时时间，超过10s之后
         const val STAY_AUTH_ACTIVITY: Long = 3//如果当前不用编辑页面，停留在页面的时间3s
         const val STAY_BRAND_ACTIVITY: Long = 2//如果当前不用编辑页面，停留在页面的时间2s
 

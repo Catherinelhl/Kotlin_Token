@@ -4,9 +4,7 @@ import android.os.Looper
 import cn.catherine.token.constant.Constants
 import cn.catherine.token.listener.TCPRequestListener
 import cn.catherine.token.vo.ClientIpInfoVO
-import cn.catherine.token.vo.TransactionChainVO
 import java.net.Socket
-import java.util.*
 
 /*
 +--------------+---------------------------------
@@ -26,6 +24,7 @@ import java.util.*
 
 object TCPThread {
 
+
     private val TAG = TCPThread::class.java.simpleName
 
     /*向服务器TCP发送的数据*/
@@ -37,7 +36,7 @@ object TCPThread {
     @Volatile
     var buildSocket: Socket? = null
     /*得到当前需要去签章的交易区块 */
-    private var currentSendVO =null
+    private var currentSendVO = null
     /*监听TCP的一些返回，通知界面作出改动 */
     private var tcpRequestListener: TCPRequestListener? = null
     /*存儲當前請求回來的需要簽章的交易區塊，做一個現城池，異步處理*/
@@ -52,7 +51,7 @@ object TCPThread {
     private var clientIpInfoVO: ClientIpInfoVO? = null
     /*当前连接的网络是否是内网*/
     private var isInternal: Boolean = false
-//    /*得到當前建立長鏈接的Handler*/
+    //    /*得到當前建立長鏈接的Handler*/
 //    private var tcpReceiveThread: TCPReceiveThread? = null
     /*得到當前建立的長鏈接的looper*/
     private var TCPReceiveLooper: Looper? = null

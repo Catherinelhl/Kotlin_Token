@@ -10,5 +10,5 @@ package cn.catherine.token.listener
  *
  */
 interface ObservableTimerListener {
-    fun timeUp()
+    fun timeUp(message: String)
 }

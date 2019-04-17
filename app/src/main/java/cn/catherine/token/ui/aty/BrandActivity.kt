@@ -29,7 +29,7 @@ class BrandActivity : BaseActivity() {
         //显示2s，然后跳转到登录页面
         ObservableTimerTool.countDownTimerBySetTime(Constants.Time.STAY_BRAND_ACTIVITY, TimeUnit.SECONDS,
             object : ObservableTimerListener {
-                override fun timeUp() {
+                override fun timeUp(message: String) {
                     //跳转到登录页面
                     val bundle = Bundle()
                     bundle.putString(Constants.KeyMaps.From, Constants.ValueMaps.FROM_BRAND)

@@ -40,6 +40,7 @@ class BaseApplication : MultiDexApplication() {
 
     companion object {
 
+
         private lateinit var instance: BaseApplication
         /*屏幕的寬*/
         var screenWidth: Int = 0
